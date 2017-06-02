@@ -1,0 +1,26 @@
+# WARNING: This file is managed by salt
+# DO NOT EDIT MANUALLY
+
+[SERVICE]
+  Flush {{ fluent_bit.config.flush }}
+  HTTP_Monitor {{ fluent_bit.config.http_monitor }}
+  HTTP_Port {{ fluent_bit.config.http_port }}
+
+{% macro plugin_config(plugins, type) -%}
+{%- for plugin in plugins %}
+[{{ type }}]
+  {%- for key, value in plugin.items() %}
+  {{ key }} {{ value }}
+  {%- endfor %}
+{%- endfor %}
+{%- endmacro -%}
+
+{% if fluent_bit.config.inputs is defined -%}
+{{ plugin_config(fluent_bit.config.inputs, 'INPUT') }}
+{%- endif %}
+{% if fluent_bit.config.filters is defined -%}
+{{ plugin_config(fluent_bit.config.filters, 'FILTER') }}
+{%- endif %}
+{% if fluent_bit.config.outputs is defined -%}
+{{ plugin_config(fluent_bit.config.outputs, 'OUTPUT') }}
+{%- endif %}
