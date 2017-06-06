@@ -13,4 +13,16 @@ fluent-bit-config:
     - group: root
     - template: jinja
     - context:
-      fluent_bit: {{ fluent_bit }}
+      parsers: False
+
+fluent-bit-parsers:
+  file.managed:
+    - name: /etc/fluent-bit/parsers.conf
+    - source: salt://fluent-bit/files/fluent-bit.conf.j2
+    - mode: 644
+    - makedirs: True
+    - user: root
+    - group: root
+    - template: jinja
+    - context:
+      parsers: True
