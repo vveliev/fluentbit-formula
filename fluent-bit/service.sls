@@ -13,3 +13,6 @@ fluent-bit-service:
   service.running:
     - name: {{ fluent_bit.service.name }}
     - enable: True
+    - watch:
+      - file: fluent-bit-config
+      - file: fluent-bit-parsers
