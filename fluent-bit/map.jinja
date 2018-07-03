@@ -20,7 +20,7 @@ that differ from whats in defaults.yaml
 {% set init_map = salt['grains.filter_by']({
     'systemd': {
       "service": {
-        "conf": '/lib/systemd/system/fluent-bit.service',
+        "conf": '/etc/init/fluent-bit.conf',
         "name": 'fluent-bit'
       }
     },
@@ -30,8 +30,8 @@ that differ from whats in defaults.yaml
         "name": 'fluent-bit'
       }
     }
-  },
-  grain="init")
+  }
+  , grain="init")
 %}
 {## Merge the flavor_map to the default settings ##}
 {% do default_settings.fluent_bit.update(os_family_map) %}
@@ -44,3 +44,4 @@ that differ from whats in defaults.yaml
         merge=True
     )
 %}
+

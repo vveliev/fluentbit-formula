@@ -1,10 +1,16 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
 fluent_bit:
-  pkg: fluentbit
+  pkg: fluent-bit
   service:
     name: fluent-bit
+    conf: fluent-bit
   config:
     flush: 5
-    http_monitor: off
+    daemon: 'Off'
+    log_level: info
+    parsers_file: parsers.conf
+    plugins_file: plugins.conf
+    http_server: 'Off'
+    http_listen: 0.0.0.0
     http_port: 2020

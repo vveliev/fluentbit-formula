@@ -4,8 +4,40 @@
 # DO NOT EDIT MANUALLY
 {%- if not parsers %}
 [SERVICE]
+# Flush
+# =====
+# Set an interval of seconds before to flush records to a destination
   Flush {{ fluent_bit.config.flush }}
-  HTTP_Monitor {{ fluent_bit.config.http_monitor }}
+
+# Daemon
+# ======
+# Instruct Fluent Bit to run in foreground or background mode.
+  Daemon {{ fluent_bit.config.daemon }}
+
+# Log_Level
+# =========
+# Set the verbosity level of the service, values can be:
+#
+# - error
+# - warning
+# - info
+# - debug
+# - trace
+#
+# By default 'info' is set, that means it includes 'error' and 'warning'.
+  Log_Level {{ fluent_bit.config.log_level }}
+
+# Parsers_File
+# ============
+# Specify an optional 'Parsers' configuration file
+  Parsers_File {{ fluent_bit.config.parsers_file }}
+  Plugins_File {{ fluent_bit.config.plugins_file }}
+
+# HTTP Server
+# ===========
+# Enable/Disable the built-in HTTP Server for metrics
+  HTTP_Server {{ fluent_bit.config.http_server }}
+  HTTP_Listen {{ fluent_bit.config.http_listen }}
   HTTP_Port {{ fluent_bit.config.http_port }}
 {%- endif %}
 

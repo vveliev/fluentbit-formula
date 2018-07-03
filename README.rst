@@ -15,22 +15,22 @@ Available states
 .. contents::
     :local:
 
-``fluentbit``
+``fluent-bit``
 ------------
 
 Shortcut for installing the fluentbit package, configuring the service and configuring fluentbit.
 
-``fluentbit.install``
+``fluent-bit.install``
 ---------------------
 
 Installs the fluentbit package
 
-``fluentbit.service``
+``fluent-bit.service``
 ---------------------
 
 Configures the fluentbit service with upstart/systemd etc
 
-``fluentbit.config``
+``fluent-bit.config``
 --------------------
 
 Configures fluentbit input/output plugins

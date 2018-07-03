@@ -3,6 +3,6 @@
 
 {% from "fluent-bit/map.jinja" import fluent_bit with context %}
 
-fluent-bit-pkg:
+{{ fluent_bit.pkg }}-pkg:
   pkg.installed:
     - name: {{ fluent_bit.pkg }}

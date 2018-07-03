@@ -1,4 +1,10 @@
 fluent_bit:
+  # possible options: td-agent-bit, fluent-bit
+  pkg: td-agent-bit
+  # optional for fluent-bit
+  service:
+    name: td-agent-bit
+    conf: /lib/systemd/system/td-agent-bit.service
   config:
     flush: 5
     http_monitor: on

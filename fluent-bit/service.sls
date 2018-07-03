@@ -3,16 +3,16 @@
 
 {% from "fluent-bit/map.jinja" import fluent_bit with context %}
 
-configure-fluent-bit-service:
+configure-{{ fluent_bit.pkg }}-service:
   file.managed:
     - name: {{ fluent_bit.service.conf }}
     - source: salt://fluent-bit/files/service.{{ grains.init }}.conf.j2
     - template: jinja
 
-fluent-bit-service:
+{{ fluent_bit.pkg }}-service:
   service.running:
     - name: {{ fluent_bit.service.name }}
     - enable: True
     - watch:
-      - file: fluent-bit-config
-      - file: fluent-bit-parsers
+      - file: {{ fluent_bit.pkg }}-config
+      - file: {{ fluent_bit.pkg }}-parsers
