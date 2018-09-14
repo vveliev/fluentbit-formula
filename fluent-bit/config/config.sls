@@ -21,7 +21,7 @@ fluent_bit-config-add-{{ config_name }}:
     - user: {{ bit.user }}
     - group: {{ bit.group }}
     - template: jinja
-    - makedirs: True  
+    - makedirs: True
     - context:
         settings: {{ values.settings }}
 {% endfor %}
@@ -55,7 +55,44 @@ fluent_bit-config-parser-add-{{ parser_name }}:
     - user: {{ bit.user }}
     - group: {{ bit.group }}
     - template: jinja
+<<<<<<< HEAD
     - makedirs: True  
     - context:
         settings: {{ values.settings }}
 {% endfor %}
+=======
+    - makedirs: True
+    - context:
+        settings: {{ values.settings }}
+{% endfor %}
+
+
+
+
+fluent_bit-log_directory:
+  file.directory:
+    - name: '/var/log/{{ bit.pkg }}/'
+    - makedirs: True
+    - user: {{ bit.user }}
+    - group: {{ bit.group }}
+    - recurse:
+      - user
+      - group
+
+fluent_bit-init-file:
+  file.managed:
+    {%- if salt['test.provider']('service').startswith('systemd') %}
+    - source: salt://fluent-bit/files/templates/service.systemd.jinja
+    - name: /etc/systemd/system/td-agent-bit.service
+    {%- elif salt['test.provider']('service') == 'upstart' %}
+    - source: salt://fluent-bit/files/templates/service.upstart.jinja
+    - name: /etc/init/fluentd.conf
+    {%- endif %}
+    - mode: '0644'
+    - user: {{ bit.user }}
+    - group: {{ bit.group }}
+    - template: jinja
+    - context:
+        user: {{ bit.user }}
+        group: {{ bit.group }}
+>>>>>>> daea4d0 (Fixed systemd service)

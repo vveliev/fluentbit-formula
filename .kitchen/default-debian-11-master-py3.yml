@@ -1,0 +1,9 @@
+---
+username: kitchen
+ssh_key: "/Users/vveliev/workspace/fluentbit-formula/.kitchen/docker_id_rsa"
+image_id: sha256:655ba354315ade03850a8af772deb813c2c0342a84a2605143ca7f685d86a49f
+container_id: 7b89fbb0bcc18756056166ec394ac059d83a1083c6579905eb42411eb060c7d2
+hostname: localhost
+port: 53270
+last_action: setup
+last_error: Kitchen::ActionFailed

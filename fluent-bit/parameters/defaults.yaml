@@ -1,0 +1,20 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+#
+# Set default values.
+---
+values:
+  pkg:
+    name: fluent-bit
+  rootgroup: fluent-bit
+  config: '/etc/fluent-bit'
+  service:
+    name: fluent-bit
+    flush: 5
+    daemon: 'Off'
+    log_level: info
+    plugins_file: plugins.conf
+    http_server: 'Off'
+    http_listen: 0.0.0.0
+    http_port: 2020
+    log_file: false
