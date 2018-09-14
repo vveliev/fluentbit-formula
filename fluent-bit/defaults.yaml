@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
+
 fluent_bit:
   pkg: fluent-bit
   service:
-    name: fluent-bit
-    conf: fluent-bit
+    unit: '/lib/systemd/system/fluent-bit.service'
+    conf: '/etc/td-agent-bit/fluent-bit.conf'
   config:
     flush: 5
     daemon: 'Off'

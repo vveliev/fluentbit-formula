@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 # vim: ft=sls
 
-{% from "fluent-bit/map.jinja" import fluent_bit with context %}
+{% from "fluent-bit/map.jinja" import bit with context %}
 
-configure-{{ fluent_bit.pkg }}-service:
+configure-{{ bit.pkg }}-service:
   file.managed:
-    - name: {{ fluent_bit.service.conf }}
+    - name: {{ bit.service.unit }}
     - source: salt://fluent-bit/files/service.{{ grains.init }}.conf.j2
     - template: jinja
 
-{{ fluent_bit.pkg }}-service:
+{{ bit.pkg }}-service:
   service.running:
-    - name: {{ fluent_bit.service.name }}
+    - name: {{ bit.pkg }}
     - enable: True
     - watch:
-      - file: {{ fluent_bit.pkg }}-config
-      - file: {{ fluent_bit.pkg }}-parsers
+      - file: {{ bit.pkg }}-config
+      - file: {{ bit.pkg }}-parsers
