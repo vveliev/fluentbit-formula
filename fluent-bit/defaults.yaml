@@ -4,7 +4,7 @@
 fluent_bit:
   repo:
     version: buster
-  pkg: fluent-bit
+  pkg: td-agent-bit
   service:
     unit: '/lib/systemd/system/fluent-bit.service'
     conf: '/etc/td-agent-bit/fluent-bit.conf'
