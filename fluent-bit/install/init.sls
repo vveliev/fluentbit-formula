@@ -1,3 +1,4 @@
 include:
   - {{ slspath }}.repo
-  - {{ slspath }}.install
+  - {{ slspath }}.package
+  - {{ slspath }}.service
