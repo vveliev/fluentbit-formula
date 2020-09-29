@@ -1,4 +1,4 @@
-{%- from slspath + '/map.jinja' import fluent_bit with context -%}
+{%- from 'fluentd-bit/map.jinja' import fluent_bit with context -%}
 fluent_bit-repo:
   pkgrepo.managed:
     - humanname: Fluentbit Official
