@@ -6,7 +6,7 @@
 {{ bit.pkg }}-config:
   file.managed:
     - name: /etc/{{ bit.pkg }}/{{ bit.pkg }}.conf
-    - source: salt://fluent-bit/files/bit.conf.j2
+    - source: salt://fluent-bit/files/bit.conf.jinja
     - mode: 644
     - makedirs: True
     - user: root
@@ -18,7 +18,7 @@
 {{ bit.pkg }}-parsers:
   file.managed:
     - name: /etc/{{ bit.pkg }}/parsers.conf
-    - source: salt://fluent-bit/files/bit.conf.j2
+    - source: salt://fluent-bit/files/bit.conf.jinja
     - mode: 644
     - makedirs: True
     - user: root

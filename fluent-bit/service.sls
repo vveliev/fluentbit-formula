@@ -6,7 +6,7 @@
 fluent_bit-service-configure-{{ bit.pkg }}:
   file.managed:
     - name: {{ bit.service.unit }}
-    - source: salt://fluent-bit/files/service.{{ grains.init }}.conf.j2
+    - source: salt://fluent-bit/files/service.{{ grains.init }}.conf.jinja
     - template: jinja
 
 fluent_bit-service-configure_log_directory:
