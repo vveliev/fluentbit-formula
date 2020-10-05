@@ -1,0 +1,48 @@
+{% from "fluent-bit/map.jinja" import bit with context -%}
+
+# WARNING: This file is managed by salt
+# DO NOT EDIT MANUALLY
+[SERVICE]
+    # Flush
+    # =====
+    # Set an interval of seconds before to flush records to a destination
+    Flush        {{ bit.agent.flush }}
+
+    # Daemon
+    # ======
+    # Instruct Fluent Bit to run in foreground or background mode.
+    Daemon       {{ bit.agent.daemon }}
+{% if bit.agent.log_file is defined %}
+    # Log_File
+    # ============
+    # Specify an optional 'log' file
+    Log_File     {{ bit.agent.log_file }}
+{% endif %}
+    # Log_Level
+    # =========
+    # Set the verbosity level of the service, values can be:
+    #
+    # - error
+    # - warning
+    # - info
+    # - debug
+    # - trace
+    #
+    # By default 'info' is set, that means it includes 'error' and 'warning'.
+    Log_Level    {{ bit.agent.log_level }}
+
+    # Parsers_File
+    # ============
+    # Specify an optional 'Parsers' configuration file
+    Parsers_File {{ bit.agent.parsers_file }}
+    Plugins_File {{ bit.agent.plugins_file }}
+
+    # HTTP Server
+    # ===========
+    # Enable/Disable the built-in HTTP Server for metrics
+    HTTP_Server  {{ bit.agent.http_server }}
+    HTTP_Listen  {{ bit.agent.http_listen }}
+    HTTP_Port    {{ bit.agent.http_port }}
+
+
+# TODO: add @INCLUDE for config files
