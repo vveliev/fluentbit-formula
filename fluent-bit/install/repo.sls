@@ -7,3 +7,4 @@ fluent_bit-repo:
     - file: /etc/apt/sources.list.d/fluentbit.list
     - key_url: https://packages.fluentbit.io/fluentbit.key
     - clean_file: True
+    
