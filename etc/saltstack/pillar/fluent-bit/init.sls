@@ -30,15 +30,6 @@ fluent_bit:
           Tag: host.*
           # Systemd_Filter  _SYSTEMD_UNIT=docker.service
           # # Can be defind multiple times
-    parsers:
-      settings:
-      # http://rubular.com/r/tjUt3Awgg4
-        - type: parser
-          Name: cri
-          Format: regex
-          Regex: '^(?<time>[^ ]+) (?<stream>stdout|stderr) (?<logtag>[^ ]*) (?<message>.*)$'
-          Time_Key: time
-          Time_Format: '%Y-%m-%dT%H:%M:%S.%L%z'
     filters:
       settings:
         - type: filters
@@ -55,3 +46,13 @@ fluent_bit:
         - type: output
           Name: stdout
           Match: '**'
+  parsers:
+    org_parser:
+      settings:
+        # http://rubular.com/r/tjUt3Awgg4
+        - type: parser
+          Name: cri
+          Format: regex
+          Regex: '^(?<time>[^ ]+) (?<stream>stdout|stderr) (?<logtag>[^ ]*) (?<message>.*)$'
+          Time_Key: time
+          Time_Format: '%Y-%m-%dT%H:%M:%S.%L%z'

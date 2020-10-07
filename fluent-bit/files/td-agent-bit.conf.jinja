@@ -45,4 +45,4 @@
     HTTP_Port    {{ bit.agent.http_port }}
 
 
-# TODO: add @INCLUDE for config files
+@INCLUDE /etc/{{ bit.pkg }}/conf.d/*.conf
