@@ -15,10 +15,10 @@ fluent_bit-log_directory:
 fluent_bit-init-file:
   file.managed:
     {%- if salt['test.provider']('service').startswith('systemd') %}
-    - source: salt://{{ tplroot }}/files/templates/service.systemd.jinja
+    - source: salt://fluent-bit/files/templates/service.systemd.jinja
     - name: /etc/systemd/system/td-agent-bit.service
     {%- elif salt['test.provider']('service') == 'upstart' %}
-    - source: salt://{{ tplroot }}/files/templates/td-agent-bit.upstart.jinja
+    - source: salt://fluent-bit/files/templates/service.upstart.jinja
     - name: /etc/init/fluentd.conf
     {%- endif %}
     - mode: '0644'
