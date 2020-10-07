@@ -14,7 +14,7 @@ fluent_bit-config:
     - template: jinja
 
 {%- for config_name,values in salt.pillar.get('fluent_bit:configs', {}).items()  %}
-fluent_bit-add-config-{{ config_name }}:
+fluent_bit-config-add-{{ config_name }}:
   file.managed:
     - name: /etc/{{ bit.pkg }}/conf.d/lable-{{ config_name }}.conf
     - source: salt://fluent-bit/files/templates/fluent-config-template.conf
@@ -27,7 +27,7 @@ fluent_bit-add-config-{{ config_name }}:
 {% endfor %}
 
 
-fluent_bit-parsers:
+fluent_bit-config-parsers:
   file.managed:
     - name: /etc/{{ bit.pkg }}/parsers.conf
     - source: salt://fluent-bit/files/parsers.conf.jinja
@@ -37,7 +37,7 @@ fluent_bit-parsers:
     - group: {{ bit.group }}
     - template: jinja
 
-fluent_bit-default-parsers-file:
+fluent_bit-config-parsers-default-file:
   file.managed:
     - name: /etc/{{ bit.pkg }}/parsers.d/default_parsers.conf
     - source: salt://fluent-bit/files/templates/default_parsers.conf
@@ -48,7 +48,7 @@ fluent_bit-default-parsers-file:
     - template: jinja
 
 {%- for parser_name,values in salt.pillar.get('fluent_bit:parsers', {}).items()  %}
-fluent_bit-add-parser-{{ parser_name }}:
+fluent_bit-config-parser-add-{{ parser_name }}:
   file.managed:
     - name: /etc/{{ bit.pkg }}/parsers.d/lable-{{ parser_name }}.conf
     - source: salt://fluent-bit/files/templates/fluent-config-template.conf

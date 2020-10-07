@@ -14,7 +14,7 @@ fluent_bit-log_directory:
 
 fluent_bit-init-file:
   file.managed:
-    {%- if salt['test.provider']('service').startswith('systemd') %}
+    {%- if salt['test.provider']('service').startswith('debian') %}
     - source: salt://fluent-bit/files/templates/service.systemd.jinja
     - name: /etc/systemd/system/td-agent-bit.service
     {%- elif salt['test.provider']('service') == 'upstart' %}
@@ -39,8 +39,7 @@ fluent_bit-service:
     - user: {{ bit.user }}
     - group: {{ bit.group }}
     - watch:
-      - file: fluent_bit-init-env
       - file: fluent_bit-init-file
-      - file: fluent_bit_add_config_*
-      - file: fluent_bit_config_file 
+      - file: fluent_bit-init-file
+      - file: fluent_bit-config*
 {%- endif %}
