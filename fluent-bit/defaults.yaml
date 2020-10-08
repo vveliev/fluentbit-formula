@@ -12,7 +12,6 @@ fluent_bit:
     flush: 5
     daemon: 'Off'
     log_level: info
-    parsers_file: parsers.conf
     plugins_file: plugins.conf
     http_server: 'Off'
     http_listen: 0.0.0.0

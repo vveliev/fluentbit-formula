@@ -24,18 +24,12 @@ fluent_bit:
           Listen: 127.0.0.1
           # Buffer_Chunk_Size:   32000
           # Buffer_Max_Size:   64000
-      # syslog input plugin req uires parser configuration
+          # syslog input plugin req uires parser configuration
         - type: input
           Name: systemd
           Tag: host.*
           # Systemd_Filter  _SYSTEMD_UNIT=docker.service
           # # Can be defind multiple times
-    filters:
-      settings:
-        - type: filters
-          Name: grep
-          Match: syslog
-          Regex: Error
     outputs:
       settings:
         - type: output
