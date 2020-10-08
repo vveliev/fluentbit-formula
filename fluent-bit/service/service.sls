@@ -40,6 +40,5 @@ fluent_bit-service:
     - group: {{ bit.group }}
     - watch:
       - file: fluent_bit-init-file
-      - file: fluent_bit-init-file
       - file: fluent_bit-config*
 {%- endif %}
