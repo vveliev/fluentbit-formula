@@ -16,6 +16,9 @@ fluent_bit:
     http_server: 'Off'
     http_listen: 0.0.0.0
     http_port: 2020
+    log_file: false
+    log_file_path: /var/log/td-agent-bit/td-agent-bit.log
+
   service: true
   configs:
     forward:

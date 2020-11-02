@@ -16,11 +16,9 @@
     # Log_File
     # ============
     # Specify an optional 'log' file
-{% if bit.agent.log_file is defined %}
+    {% if bit.agent.log_file %}
     Log_File     {{ bit.agent.log_file }}
-{% else %}
-    Log_File     /var/log/{{bit.pkg}}/{{bit.pkg}}.log
-{% endif %}
+    {% endif %}
     # Log_Level
     # =========
     # Set the verbosity level of the service, values can be:
