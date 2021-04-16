@@ -120,7 +120,7 @@ jobs:
     - env: INSTANCE=default-oraclelinux-7-master-py3
     - env: INSTANCE=gentoo-gentoo-stage3-latest-master-py3
     - env: INSTANCE=gentoo-gentoo-stage3-systemd-master-py3
-    # - env: INSTANCE=default-debian-10-3002-5-py3
+    # - env: INSTANCE=default-debian-10-3002-6-py3
     # - env: INSTANCE=default-debian-9-3002-5-py3
     # - env: INSTANCE=default-ubuntu-2004-3002-5-py3
     # - env: INSTANCE=default-ubuntu-1804-3002-5-py3

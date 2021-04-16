@@ -14,7 +14,8 @@
 values:
   pkg:
     name: fluent-bit-debian
+    repo:
+      name: deb https://packages.fluentbit.io/debian/buster buster main
   config: /etc/fluent-bit/config.conf
   service:
     log_file_path: /var/log/td-agent-bit/td-agent-bit.log
-...

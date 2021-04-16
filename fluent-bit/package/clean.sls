@@ -14,3 +14,11 @@ fluent-bit-package-clean-pkg-removed:
     - name: {{ bit.pkg.name }}
     - require:
       - sls: {{ sls_config_clean }}
+
+# fluent-bit-package-repo-remove:
+#   pkgrepo.managed:
+#     - humanname: Fluentbit Official
+#     - name: deb https://packages.fluentbit.io/debian/{{ bit.repo.version }} {{ bit.repo.version }} main
+#     - file: /etc/apt/sources.list.d/fluentbit.list
+#     - key_url: https://packages.fluentbit.io/fluentbit.key
+#     - clean_file: True
