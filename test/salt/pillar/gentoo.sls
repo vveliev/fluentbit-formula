@@ -3,7 +3,7 @@
 ---
 portage:
   sync_wait_one_day: true
-fluent-bit:
+fluentbit:
   pkg:
     name: 'app-shells/bash'
   service:

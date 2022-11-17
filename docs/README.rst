@@ -1,14 +1,14 @@
 .. _readme:
 
-fluent-bit-formula
-================
+fluentbit-formula
+=================
 
 |img_travis| |img_sr| |img_pc|
 
-.. |img_travis| image:: https://travis-ci.com/saltstack-formulas/fluent-bit-formula.svg?branch=master
+.. |img_travis| image:: https://travis-ci.com/saltstack-formulas/fluentbit-formula.svg?branch=master
    :alt: Travis CI Build Status
    :scale: 100%
-   :target: https://travis-ci.com/saltstack-formulas/fluent-bit-formula
+   :target: https://travis-ci.com/saltstack-formulas/fluentbit-formula
 .. |img_sr| image:: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
    :alt: Semantic Release
    :scale: 100%
@@ -18,11 +18,9 @@ fluent-bit-formula
    :scale: 100%
    :target: https://github.com/pre-commit/pre-commit
 
-A SaltStack formula that is empty. It has dummy content to help with a quick
-start on a new formula and it serves as a style guide.
 
-.. contents:: **Table of Contents**
-   :depth: 1
+A SaltStack formula that for installing and configuring fluent-bit (td-agent-bit)
+
 
 General notes
 -------------
@@ -76,80 +74,61 @@ Available states
 .. contents::
    :local:
 
-``fluent-bit``
-^^^^^^^^^^^^
+``fluentbit``
+^^^^^^^^^^^^^
 
 *Meta-state (This is a state that includes other states)*.
 
-This installs the fluent-bit package,
-manages the fluent-bit configuration file and then
-starts the associated fluent-bit service.
+This installs the fluentbit package,
+manages the fluentbit configuration file and then
+starts the associated fluentbit service.
 
-``fluent-bit.package``
+``fluentbit.package``
+^^^^^^^^^^^^^^^^^^^^^
+
+Installs the fluentbit package
+
+``fluentbit.config``
 ^^^^^^^^^^^^^^^^^^^^
+Configures the fluent-bit service with upstart/systemd etc
 
-This state will install the fluent-bit package only.
 
-``fluent-bit.config``
+Configures fluent-bit input/output plugins
+
+
+``fluentbit.service``
+^^^^^^^^^^^^^^^^^^^^^
+
+This state will start the fluentbit service and has a dependency on ``fluentbit.config``
+via include list.
+
+``fluentbit.clean``
 ^^^^^^^^^^^^^^^^^^^
 
-This state will configure the fluent-bit service and has a dependency on ``fluent-bit.install``
-via include list.
-
-``fluent-bit.service``
-^^^^^^^^^^^^^^^^^^^^
-
-This state will start the fluent-bit service and has a dependency on ``fluent-bit.config``
-via include list.
-
-``fluent-bit.clean``
-^^^^^^^^^^^^^^^^^^
-
 *Meta-state (This is a state that includes other states)*.
 
-this state will undo everything performed in the ``fluent-bit`` meta-state in reverse order, i.e.
+this state will undo everything performed in the ``fluentbit`` meta-state in reverse order, i.e.
 stops the service,
 removes the configuration file and
 then uninstalls the package.
 
-``fluent-bit.service.clean``
+``fluentbit.service.clean``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This state will stop the fluentbit service and disable it at boot time.
+
+``fluentbit.config.clean``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This state will stop the fluent-bit service and disable it at boot time.
+This state will remove the configuration of the fluentbit service and has a
+dependency on ``fluentbit.service.clean`` via include list.
 
-``fluent-bit.config.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^
+``fluentbit.package.clean``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This state will remove the configuration of the fluent-bit service and has a
-dependency on ``fluent-bit.service.clean`` via include list.
+This state will remove the fluentbit package and has a depency on
+``fluentbit.config.clean`` via include list.
 
-``fluent-bit.package.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This state will remove the fluent-bit package and has a depency on
-``fluent-bit.config.clean`` via include list.
-
-``fluent-bit.subcomponent``
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-*Meta-state (This is a state that includes other states)*.
-
-This state installs a subcomponent configuration file before
-configuring and starting the fluent-bit service.
-
-``fluent-bit.subcomponent.config``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This state will configure the fluent-bit subcomponent and has a
-dependency on ``fluent-bit.config`` via include list.
-
-``fluent-bit.subcomponent.config.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This state will remove the configuration of the fluent-bit subcomponent
-and reload the fluent-bit service by a dependency on
-``fluent-bit.service.running`` via include list and ``watch_in``
-requisite.
 
 Testing
 -------
@@ -174,7 +153,7 @@ e.g. ``debian-9-2019-2-py3``.
 ``bin/kitchen converge``
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Creates the docker instance and runs the ``fluent-bit`` main state, ready for testing.
+Creates the docker instance and runs the ``fluentbit`` main state, ready for testing.
 
 ``bin/kitchen verify``
 ^^^^^^^^^^^^^^^^^^^^^^

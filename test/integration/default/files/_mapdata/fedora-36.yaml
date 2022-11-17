@@ -1,5 +1,5 @@
 # yamllint disable rule:indentation rule:line-length
-# Ubuntu-20.04
+# Fedora-36
 ---
 values:
   added_in_defaults: defaults_value

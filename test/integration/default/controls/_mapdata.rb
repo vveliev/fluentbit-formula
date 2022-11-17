@@ -2,7 +2,7 @@
 
 require 'yaml'
 
-control 'fluent-bit._mapdata' do
+control 'fluentbit._mapdata' do
   title '`map.jinja` should match the reference file'
 
   ### Method

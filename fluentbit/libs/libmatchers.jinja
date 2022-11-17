@@ -3,7 +3,7 @@
 
 {#- Get the `tplroot` from `tpldir` #}
 {%- set tplroot = tpldir.split("/")[0] %}
-{%- from tplroot ~ "/libsaltcli.jinja" import cli %}
+{%- from tplroot ~ "/libs/libsaltcli.jinja" import cli with context %}
 
 {%- set query_map = {
       "C": "config.get",
@@ -12,11 +12,11 @@
     } %}
 
 {#- When no part before `@` is provided: #}
-{#-   - define a filename path, noted `F` #}
+{#-   - define a YAML file path, noted `Y` #}
 {#-   - use `salt["config.get"]`, noted `C` #}
 {#-   - use colon `:` delimiter for querying #}
 {%- set _defaults = {
-      "type": "F",
+      "type": "Y",
       "query_type": "C",
       "query_delimiter": ":"
     } %}
@@ -28,11 +28,11 @@
     ) %}
 {#-   matcher format is `[<TYPE>[:<OPTION>[:DELIMITER]]@]<KEY>` #}
 {#-   each matcher has a type: #}
-{#-   - `F` to build a file name (the default when no type is set) #}
+{#-   - `Y` to build a YAML file name (the default when no type is set) #}
 {#-   - `C` to lookup values with `config.get` #}
 {#-   - `G` to lookup values with `grains.get` #}
 {#-   - `I` to lookup values with `pillar.get` #}
-{#-   The `FILE` type option can define query type to build the file name: #}
+{#-   The `YAML` type option can define query type to build the file name: #}
 {#-   - `C` for query with `config.get` (the default when to query type is set) #}
 {#-   - `G` for query with `grains.get` #}
 {#-   - `I` for query with `pillar.get` #}
@@ -162,7 +162,7 @@
 {%-     endif %}
 
 {#-     Add `merge:` option to `salt["config.get"]` if configured #}
-{%-     if cli in ["minion", "local"] and parsed.query_method == "config.get" and config_get_strategy %}
+{%-     if cli not in ["ssh", "unknown"] and parsed.query_method == "config.get" and config_get_strategy %}
 {%-       set query_opts = {
             "merge": config_get_strategy,
             "delimiter": parsed.query_delimiter,
@@ -175,8 +175,8 @@
             ~ "'"
           ) %}
 {%-     else %}
-{%-       if cli not in ["minion", "local"] %}
-{%-         do salt["log.error"](
+{%-       if cli in ["ssh", "unknown"] %}
+{%-         do salt["log.warning"](
               log_prefix
               ~ "the 'delimiter' and 'merge' options of 'config.get' are skipped when the salt command type is '"
               ~ cli

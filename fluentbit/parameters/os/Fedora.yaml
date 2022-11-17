@@ -13,7 +13,7 @@
 ---
 values:
   pkg:
-    name: fluent-bit-fedora
+    name: fluentbit-fedora
   service:
     name: service-fedora
 ...

@@ -13,6 +13,6 @@
 ---
 values:
   pkg:
-    name: fluent-bit-centos-6
-  config: /etc/fluent-bit.d/custom-centos-6.conf
+    name: fluentbit-centos-6
+  config: /etc/fluentbit.d/custom-centos-6.conf
 ...

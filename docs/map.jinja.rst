@@ -28,7 +28,7 @@ For formula users
 Quick start: configure per role and per DNS domain name values
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-We will see a quick setup to configure the ``fluent-bit`` formula for different DNS domain names and several roles.
+We will see a quick setup to configure the ``fluentbit`` formula for different DNS domain names and several roles.
 
 For this example, I'll define 2 kinds of `fileserver`_ sources:
 
@@ -37,7 +37,7 @@ For this example, I'll define 2 kinds of `fileserver`_ sources:
 
 
 Configure the fileserver backends
-`````````````````````````````````
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 I configure the `fileserver`_ backends to serve:
 
@@ -72,19 +72,19 @@ Create the file ``/etc/salt/master.d/fileserver.conf`` and restart the ``master`
     ...
 
 
-Create per DNS configuration for ``fluent-bit`` formula
-`````````````````````````````````````````````````````
+Create per DNS configuration for ``fluentbit`` formula
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Now, we can provides the per DNS domain name configuration files for the ``fluent-bit`` formulas under ``/srv/salt/fluent-bit/parameters/``.
+Now, we can provides the per DNS domain name configuration files for the ``fluentbit`` formulas under ``/srv/salt/fluentbit/parameters/``.
 
 We create the directory for ``dns:domain`` grain and we add a symlink for the ``domain`` grain which is extracted from the minion ``id``:
 
 .. code-block:: console
 
-    mkdir -p /srv/salt/fluent-bit/parameters/dns:domain/
-    ln -s dns:domain /srv/salt/fluent-bit/parameters/domain
+    mkdir -p /srv/salt/fluentbit/parameters/dns:domain/
+    ln -s dns:domain /srv/salt/fluentbit/parameters/domain
 
-We create a configuration for the DNS domain ``example.net`` in ``/srv/salt/fluent-bit/parameters/dns:domain/example.net.yaml``:
+We create a configuration for the DNS domain ``example.net`` in ``/srv/salt/fluentbit/parameters/dns:domain/example.net.yaml``:
 
 .. code-block:: yaml
 
@@ -93,7 +93,7 @@ We create a configuration for the DNS domain ``example.net`` in ``/srv/salt/flue
       config: /etc/template-formula-example-net.conf
     ...
 
-We create another configuration for the DNS domain ``example.com`` in the Jinja YAML template ``/srv/salt/fluent-bit/parameters/dns:domain/example.com.yaml.jinja``:
+We create another configuration for the DNS domain ``example.com`` in the Jinja YAML template ``/srv/salt/fluentbit/parameters/dns:domain/example.com.yaml.jinja``:
 
 .. code-block:: yaml
 
@@ -103,23 +103,23 @@ We create another configuration for the DNS domain ``example.com`` in the Jinja 
     ...
 
 
-Create per role configuration for ``fluent-bit`` formula
-``````````````````````````````````````````````````````
+Create per role configuration for ``fluentbit`` formula
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Now, we can provides the per role configuration files for the ``fluent-bit`` formulas under ``/srv/salt/fluent-bit/parameters/``.
+Now, we can provides the per role configuration files for the ``fluentbit`` formulas under ``/srv/salt/fluentbit/parameters/``.
 
 We create the directory for roles:
 
 .. code-block:: console
 
-    mkdir -p /srv/salt/fluent-bit/parameters/roles
+    mkdir -p /srv/salt/fluentbit/parameters/roles
 
 We will define 2 roles:
 
-- ``fluent-bit/server``
-- ``fluent-bit/client``
+- ``fluentbit/server``
+- ``fluentbit/client``
 
-We create a configuration for the role ``fluent-bit/server`` in ``/srv/salt/fluent-bit/parameters/roles/fluent-bit/server.yaml``:
+We create a configuration for the role ``fluentbit/server`` in ``/srv/salt/fluentbit/parameters/roles/fluentbit/server.yaml``:
 
 .. code-block:: yaml
 
@@ -128,7 +128,7 @@ We create a configuration for the role ``fluent-bit/server`` in ``/srv/salt/flue
       config: /etc/template-formula-server.conf
     ...
 
-We create another configuration for the role ``fluent-bit/client`` in ``/srv/salt/fluent-bit/parameters/roles/fluent-bit/client.yaml``:
+We create another configuration for the role ``fluentbit/client`` in ``/srv/salt/fluentbit/parameters/roles/fluentbit/client.yaml``:
 
 .. code-block:: yaml
 
@@ -139,7 +139,7 @@ We create another configuration for the role ``fluent-bit/client`` in ``/srv/sal
 
 
 Enable roles and the ``dns:domain`` and ``domain`` grains for ``map.jinja``
-```````````````````````````````````````````````````````````````````````````
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We need to redefine the sources for ``map.jinja`` to load values from our new configuration files, we provide a global configuration for all our minions.
 
@@ -177,7 +177,7 @@ The syntax is explained later at `Sources of configuration values`_.
 
 
 Bind roles to minions
-`````````````````````
+~~~~~~~~~~~~~~~~~~~~~
 
 We associate roles `grains`_ to minion using `grains.append`_.
 
@@ -185,20 +185,20 @@ For the servers:
 
 .. code-block:: console
 
-    salt 'server-*' grains.append roles fluent-bit/server
+    salt 'server-*' grains.append roles fluentbit/server
 
 For the clients:
 
 .. code-block:: console
 
-    salt 'client-*' grains.append roles fluent-bit/client
+    salt 'client-*' grains.append roles fluentbit/client
 
 .. note::
 
     Since we used ``Y:C@roles``, ``map.jinja`` will do a ``salt['config.get']('roles')`` to retrieve the roles so you could use any other method to bind roles to minions (`pillars`_ or `SDB`_) but `grains`_ seems to be the preferred method.
 
 Note for Microsoft Windows systems
-``````````````````````````````````
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you have a minion running under windows, you can't use colon ``:`` as a delimiter for grain path query (see `bug 58726`_) in which case you should use an alternate delimiter:
 
@@ -236,7 +236,7 @@ And then, rename the directory:
 
 .. code-block:: console
 
-    mv /srv/salt/fluent-bit/parameters/dns:domain/  '/srv/salt/fluent-bit/parameters/dns!domain/'
+    mv /srv/salt/fluentbit/parameters/dns:domain/  '/srv/salt/fluentbit/parameters/dns!domain/'
 
 
 Format of configuration YAML files
@@ -265,11 +265,11 @@ Here is a valid example:
 
 
 Using Jinja2 YAML template
-``````````````````````````
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can provide a Jinja2 YAML template file with a name suffixed with ``.yaml.jinja``, it must produce a YAML file conform to the `Format of configuration YAML files`_, for example:
 
-.. code-block:: jinja2
+.. code-block:: jinja
 
     ---
     strategy: 'overwrite'
@@ -293,10 +293,10 @@ The ``map.jinja`` file aggregates configuration values from several sources:
 
 For the values loaded from YAML files, ``map.jinja`` will automatically try to load a Jinja2 template with the same name as the YAML file with the addition of the ``.jinja`` extension, for example ``foo/bar/quux.yaml.jinja``.
 
-After loading values from all sources, it will try to include the ``salt://parameters/post-map.jinja`` Jinja file if it exists which can post-process the ``mapdata`` variable.
+After loading values from all sources, it will try to include the ``salt://{{ tplroot }}/post-map.jinja`` Jinja file if it exists which can post-process the ``mapdata`` variable.
 
 Configuring ``map.jinja`` sources
-`````````````````````````````````
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``map.jinja`` file uses several sources where to lookup parameter values. The list of sources can be configured in two places:
 
@@ -373,7 +373,7 @@ This is strictly equivalent to the following ``map_jinja.yaml.jinja``:
 
 
 Loading values from the configuration sources
-`````````````````````````````````````````````
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 For each configuration source defined, ``map.jinja`` will:
 
@@ -399,7 +399,7 @@ There will be no error if a YAML or Jinja2 file does not exists, they are all op
 
 
 Configuration values from ``salt['config.get']``
-````````````````````````````````````````````````
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 For sources with of type ``C`` declared in ``map_jinja:sources``, you can configure the ``merge`` option of `salt['config.get']`_ by defining per formula ``strategy`` configuration key (retrieved with ``salt['config.get'](tplroot ~ ':strategy')`` with one of the following values:
 
@@ -410,7 +410,7 @@ By default, no merging is done, the first value found is returned.
 
 
 Global view of the order of preferences
-```````````````````````````````````````
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To summarise, here is a complete example of the load order of formula configuration values for an ``AMD64`` ``Ubuntu 18.04`` minion named ``minion1.example.net`` for the ``libvirt`` formula:
 
@@ -458,11 +458,11 @@ Here is the best way to use it in an ``sls`` file:
 
     {#- Get the `tplroot` from `tpldir` #}
     {%- set tplroot = tpldir.split("/")[0] %}
-    {%- from tplroot ~ "/map.jinja" import mapdata as fluent-bit with context %}
+    {%- from tplroot ~ "/libs/map.jinja" import mapdata as fluentbit with context %}
 
-    test-does-nothing-but-display-fluent-bit-as-json:
+    test-does-nothing-but-display-fluentbit-as-json:
       test.nop:
-        - name: {{ fluent-bit | json }}
+        - name: {{ fluentbit | json }}
 
 
 Use formula configuration values in templates
@@ -470,7 +470,7 @@ Use formula configuration values in templates
 
 When you need to process salt templates, you should avoid calling `salt['config.get']`_ (or `salt['pillar.get']`_ and `salt['grains.get']`_) directly from the template. All the needed values should be available within the ``mapdata`` variable exported by ``map.jinja``.
 
-Here is an example based on `template-formula/fluent-bit/config/file.sls`_:
+Here is an example based on `template-formula/fluentbit/config/file.sls`_:
 
 .. code-block:: sls
 
@@ -480,30 +480,30 @@ Here is an example based on `template-formula/fluent-bit/config/file.sls`_:
     {#- Get the `tplroot` from `tpldir` #}
     {%- set tplroot = tpldir.split('/')[0] %}
     {%- set sls_package_install = tplroot ~ '.package.install' %}
-    {%- from tplroot ~ "/map.jinja" import mapdata as fluent-bit with context %}
-    {%- from tplroot ~ "/libtofs.jinja" import files_switch with context %}
+    {%- from tplroot ~ "/libs/map.jinja" import mapdata as fluentbit with context %}
+    {%- from tplroot ~ "/libs/libtofs.jinja" import files_switch with context %}
 
     include:
       - {{ sls_package_install }}
 
-    fluent-bit-config-file-file-managed:
+    fluentbit-config-file-file-managed:
       file.managed:
-        - name: {{ fluent-bit.config }}
+        - name: {{ fluentbit.config }}
         - source: {{ files_switch(['example.tmpl'],
-                                  lookup='fluent-bit-config-file-file-managed'
+                                  lookup='fluentbit-config-file-file-managed'
                      )
                   }}
         - mode: 644
         - user: root
-        - group: {{ fluent-bit.rootgroup }}
+        - group: {{ fluentbit.rootgroup }}
         - makedirs: True
         - template: jinja
         - require:
           - sls: {{ sls_package_install }}
         - context:
-            fluent-bit: {{ fluent-bit | json }}
+            fluentbit: {{ fluentbit | json }}
 
-This ``sls`` file expose a ``fluent-bit`` context variable to the jinja template which could be used like this:
+This ``sls`` file expose a ``fluentbit`` context variable to the jinja template which could be used like this:
 
 .. code-block:: jinja
 
@@ -515,9 +515,9 @@ This ``sls`` file expose a ``fluent-bit`` context variable to the jinja template
     This is another example file from SaltStack template-formula.
 
     # This is here for testing purposes
-    {{ fluent-bit | json }}
+    {{ fluentbit | json }}
 
-    winner of the merge: {{ fluent-bit['winner'] }}
+    winner of the merge: {{ fluentbit['winner'] }}
 
 
 .. _documentation: https://docs.saltproject.io/en/latest/topics/development/conventions/formulas.html#writing-formulas
@@ -538,5 +538,5 @@ This ``sls`` file expose a ``fluent-bit`` context variable to the jinja template
 .. _salt.slsutil.merge: https://docs.saltproject.io/en/latest/ref/modules/all/salt.modules.slsutil.html#salt.modules.slsutil.merge
 .. _traverse: https://docs.saltproject.io/en/latest/topics/jinja/index.html#traverse
 .. _salt-ssh: https://docs.saltproject.io/en/latest/topics/ssh/
-.. _template-formula/fluent-bit/config/file.sls: https://github.com/saltstack-formulas/template-formula/blob/master/fluent-bit/config/file.sls
+.. _template-formula/fluentbit/config/file.sls: https://github.com/saltstack-formulas/template-formula/blob/master/fluentbit/config/file.sls
 .. _bug 58726: https://github.com/saltstack/salt/issues/58726

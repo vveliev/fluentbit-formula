@@ -3,12 +3,12 @@
 
 {#- Get the `tplroot` from `tpldir` #}
 {%- set tplroot = tpldir.split('/')[0] %}
-{%- from tplroot ~ "/map.jinja" import mapdata as bit with context %}
+{%- from tplroot ~ "/libs/map.jinja" import mapdata as fluentbit with context %}
 
-fluent-bit-install-pkgrepo-managed-fluentd-repo:
+fluentbit-install-pkgrepo-managed-fluentd-repo:
   pkgrepo.managed:
     - humanname: Fluentbit Official
-    - name: deb https://packages.fluentbit.io/debian/{{ bit.repo.version }} {{ bit.repo.version }} main
+    - name: deb https://packages.fluentbit.io/debian/{{ fluentbit.repo.version }} {{ fluentbit.repo.version }} main
     - file: /etc/apt/sources.list.d/fluentbit.list
     - key_url: https://packages.fluentbit.io/fluentbit.key
     - clean_file: True
@@ -19,6 +19,6 @@ fluent-bit-install-pkgrepo-managed-fluentd-repo:
         - installed by salt
 
 
-fluent-bit-package-install-pkg-installed:
+fluentbit-package-install-pkg-installed:
   pkg.installed:
-    - name: {{ bit.pkg.name }}
+    - name: {{ fluentbit.pkg.name }}

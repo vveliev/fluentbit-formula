@@ -3,9 +3,9 @@
 
 {#- Get the `tplroot` from `tpldir` #}
 {%- set tplroot = tpldir.split('/')[0] %}
-{%- from tplroot ~ "/map.jinja" import mapdata as bit with context %}
+{%- from tplroot ~ "/libs/map.jinja" import mapdata as fluentbit with context %}
 
-fluent-bit-service-clean-service-dead:
+fluentbit-service-clean-service-dead:
   service.dead:
-    - name: {{ bit.service.name }}
+    - name: {{ fluentbit.service.name }}
     - enable: False

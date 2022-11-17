@@ -2,11 +2,11 @@
 # vim: ft=yaml
 ---
 name: default
-title: fluent-bit formula
+title: fluentbit formula
 maintainer: SaltStack Formulas
 license: Apache-2.0
 # yamllint disable-line rule:line-length
-summary: Verify that the fluent-bit formula is setup and configured correctly
+summary: Verify that the fluentbit formula is setup and configured correctly
 depends:
   - name: share
     path: test/integration/share
@@ -23,4 +23,7 @@ supports:
   - platform-name: oracle
   - platform-name: arch
   - platform-name: gentoo
+  - platform-name: almalinux
+  - platform-name: rocky
+  - platform-name: mac_os_x
   - platform: windows

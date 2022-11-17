@@ -13,7 +13,7 @@
 ---
 values:
   pkg:
-    name: fluent-bit-arch
+    name: fluentbit-arch
   service:
     name: service-arch
 ...

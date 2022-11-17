@@ -13,6 +13,6 @@
 ---
 values:
   pkg:
-    name: fluent-bit-ubuntu
-  config: /etc/fluent-bit.d/custom-ubuntu.conf
+    name: fluentbit-ubuntu
+  config: /etc/fluentbit.d/custom-ubuntu.conf
 ...

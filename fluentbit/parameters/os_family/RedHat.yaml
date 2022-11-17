@@ -13,6 +13,6 @@
 ---
 values:
   pkg:
-    name: fluent-bit-redhat
-  config: /etc/fluent-bit.conf
+    name: fluentbit-redhat
+  config: /etc/fluentbit.conf
 ...

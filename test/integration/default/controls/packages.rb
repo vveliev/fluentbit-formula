@@ -3,10 +3,10 @@
 # Prepare platform "finger"
 platform_finger = system.platform[:finger].split('.').first.to_s
 
-control 'fluent-bit.package.install' do
+control 'fluentbit.package.install' do
   title 'The required package should be installed'
 
-  # Overide by `platform_finger`
+  # Override by `platform_finger`
   package_name =
     case platform_finger
     when 'centos-6', 'amazonlinux-1'

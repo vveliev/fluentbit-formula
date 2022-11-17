@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-# vim: ft=jinja
+{#- -*- coding: utf-8 -*- #}
+{#- vim: ft=jinja #}
 
 {#- Get the relevant values from the `opts` dict #}
 {%- set opts_cli = opts.get('__cli', '') %}
@@ -10,6 +10,8 @@
 {%-   set cli = 'minion' %}
 {%- elif opts_cli == 'salt-call' %}
 {%-   set cli = 'ssh' if opts_masteropts_cli in ('salt-ssh', 'salt-master') else 'local' %}
+{%- elif opts_cli %}
+{%-   set cli = 'api' %}
 {%- else %}
 {%-   set cli = 'unknown' %}
 {%- endif %}

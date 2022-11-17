@@ -12,9 +12,9 @@ fluentbit:
   # test the template formula itself. You should set these parameters to
   # examples that make sense in the contexto of the formula you're writing.
   pkg:
-    name: cronie
+    name: bash
   service:
-    name: crond
+    name: systemd-journald
   config: /etc/template-formula.conf
 
   tofs:
@@ -32,6 +32,8 @@ fluentbit:
       - os_family
     # All aspects of path/file resolution are customisable using the options below.
     # This is unnecessary in most cases; there are sensible defaults.
+    # Default path: salt://< path_prefix >/< dirs.files >/< dirs.default >
+    #         I.e.: salt://fluentbit/files/default
     # path_prefix: template_alt
     # dirs:
     #   files: files_alt
@@ -39,7 +41,7 @@ fluentbit:
     # The entries under `source_files` are prepended to the default source files
     # given for the state
     # source_files:
-    #   template-config-file-file-managed:
+    #   fluentbit-config-file-file-managed:
     #     - 'example_alt.tmpl'
     #     - 'example_alt.tmpl.jinja'
 

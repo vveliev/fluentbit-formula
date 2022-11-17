@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-control 'fluent-bit.config.file' do
+control 'fluentbit.config.file' do
   title 'Verify the configuration file'
 
   describe file('/etc/template-formula.conf') do
@@ -26,8 +26,8 @@ control 'fluent-bit.config.file' do
       should include(
         '"tofs": {"files_switch": ["any/path/can/be/used/here", "id", '\
         '"roles", "osfinger", "os", "os_family"], "source_files": '\
-        '{"fluent-bit-config-file-file-managed": ["example.tmpl.jinja"], '\
-        '"fluent-bit-subcomponent-config-file-file-managed": '\
+        '{"fluentbit-config-file-file-managed": ["example.tmpl.jinja"], '\
+        '"fluentbit-subcomponent-config-file-file-managed": '\
         '["subcomponent-example.tmpl.jinja"]}'
       )
       # rubocop:enable Layout/LineLength
