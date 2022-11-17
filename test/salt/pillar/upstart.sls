@@ -49,7 +49,3 @@ fluent-bit:
         - 'example.tmpl.jinja'
       fluent-bit-subcomponent-config-file-file-managed:
         - 'subcomponent-example.tmpl.jinja'
-
-  # Just for testing purposes
-  winner: pillar
-  added_in_pillar: pillar_value
