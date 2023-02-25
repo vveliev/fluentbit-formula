@@ -10,9 +10,10 @@
 # If you do not need to provide defaults via the `os_family` config,
 # you can remove this file or provide at least an empty dict, e.g.
 # values: {}
+{% set os_distrubition = grains['lsb_distrib_codename'] %}
 ---
 values:
   pkg:
-    name: fluentbit-debian
+    name: fluentbit
   config: /etc/fluentbit.d/custom.conf
 ...

@@ -47,8 +47,6 @@ fluentbit:
     source_files:
       fluentbit-config-file-file-managed:
         - 'example.tmpl.jinja'
-      fluentbit-subcomponent-config-file-file-managed:
-        - 'subcomponent-example.tmpl.jinja'
 
   # Just for testing purposes
   winner: pillar

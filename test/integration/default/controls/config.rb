@@ -27,8 +27,6 @@ control 'fluentbit.config.file' do
         '"tofs": {"files_switch": ["any/path/can/be/used/here", "id", '\
         '"roles", "osfinger", "os", "os_family"], "source_files": '\
         '{"fluentbit-config-file-file-managed": ["example.tmpl.jinja"], '\
-        '"fluentbit-subcomponent-config-file-file-managed": '\
-        '["subcomponent-example.tmpl.jinja"]}'
       )
       # rubocop:enable Layout/LineLength
       # rubocop:enable Lint/RedundantCopDisableDirective
