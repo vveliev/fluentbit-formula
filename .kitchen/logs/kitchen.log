@@ -1,0 +1,182 @@
+I, [2023-02-25T00:23:12.591216 #14983]  INFO -- Kitchen: -----> Starting Test Kitchen (v3.3.1)
+I, [2023-02-25T00:23:13.446701 #14983]  INFO -- Kitchen: -----> Cleaning up any prior instances of <default-debian-11-master-py3>
+I, [2023-02-25T00:23:13.447201 #14983]  INFO -- Kitchen: -----> Destroying <default-debian-11-master-py3>...
+I, [2023-02-25T00:23:13.447616 #14983]  INFO -- Kitchen: [Docker] Destroying Docker container a92ee09f469a3acf3b84f30822b48ef1cce68c51b6e2329c55bfe19b09ce3179
+I, [2023-02-25T00:23:13.551546 #14983]  INFO -- Kitchen: UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
+I, [2023-02-25T00:23:13.551707 #14983]  INFO -- Kitchen: root                60716               60691               0                   05:21               ?                   00:00:00            /lib/systemd/systemd
+I, [2023-02-25T00:23:13.551760 #14983]  INFO -- Kitchen: root                60786               60716               0                   05:21               ?                   00:00:00            sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+I, [2023-02-25T00:23:13.551799 #14983]  INFO -- Kitchen: root                60766               60716               0                   05:21               ?                   00:00:00            /lib/systemd/systemd-journald
+I, [2023-02-25T00:23:13.825006 #14983]  INFO -- Kitchen: a92ee09f469a3acf3b84f30822b48ef1cce68c51b6e2329c55bfe19b09ce3179
+I, [2023-02-25T00:23:13.951504 #14983]  INFO -- Kitchen: a92ee09f469a3acf3b84f30822b48ef1cce68c51b6e2329c55bfe19b09ce3179
+I, [2023-02-25T00:23:13.969490 #14983]  INFO -- Kitchen: -----> Testing <default-debian-11-master-py3>
+I, [2023-02-25T00:23:13.969665 #14983]  INFO -- Kitchen: -----> Creating <default-debian-11-master-py3>...
+I, [2023-02-25T00:23:14.374177 #14983]  INFO -- Kitchen: #1 [internal] load build definition from Dockerfile-kitchen20230225-14983-8b9ymd
+I, [2023-02-25T00:23:14.374398 #14983]  INFO -- Kitchen: #1 sha256:bb2e844d185d12d2e748cdedf46c149b7601385645ace3cd6a3eff674850245c
+I, [2023-02-25T00:23:14.374457 #14983]  INFO -- Kitchen: #1 transferring dockerfile: 1.45kB done
+I, [2023-02-25T00:23:14.374714 #14983]  INFO -- Kitchen: #1 DONE 0.0s
+I, [2023-02-25T00:23:14.374766 #14983]  INFO -- Kitchen: 
+I, [2023-02-25T00:23:14.374811 #14983]  INFO -- Kitchen: #2 [internal] load .dockerignore
+I, [2023-02-25T00:23:14.374863 #14983]  INFO -- Kitchen: #2 sha256:f5e1bfd5f6c873648506998a46082510b57dcacff463f00bcf7797ea55674879
+I, [2023-02-25T00:23:14.374978 #14983]  INFO -- Kitchen: #2 transferring context: 2B done
+I, [2023-02-25T00:23:14.375030 #14983]  INFO -- Kitchen: #2 DONE 0.0s
+I, [2023-02-25T00:23:14.375073 #14983]  INFO -- Kitchen: 
+I, [2023-02-25T00:23:14.375119 #14983]  INFO -- Kitchen: #3 [internal] load metadata for docker.io/saltimages/salt-master-py3:debian-11
+I, [2023-02-25T00:23:14.375166 #14983]  INFO -- Kitchen: #3 sha256:f6ea40cfb99c34e95a3566ed5cddf16ea3796c3a169eb5a485dc004574111988
+I, [2023-02-25T00:23:14.601923 #14983]  INFO -- Kitchen: #3 DONE 0.3s
+I, [2023-02-25T00:23:14.601993 #14983]  INFO -- Kitchen: 
+I, [2023-02-25T00:23:14.602034 #14983]  INFO -- Kitchen: #4 [ 1/13] FROM docker.io/saltimages/salt-master-py3:debian-11@sha256:f0db51ad5090052aedbb10af327cf7ba7852b414b86f8f49e0c5ddbff70e5202
+I, [2023-02-25T00:23:14.602070 #14983]  INFO -- Kitchen: #4 sha256:37fdad4ce1a512f7e69193659f06657f68a51b2cba2263d5d18b12e2b1ed9e89
+I, [2023-02-25T00:23:14.602100 #14983]  INFO -- Kitchen: #4 DONE 0.0s
+I, [2023-02-25T00:23:14.602132 #14983]  INFO -- Kitchen: 
+I, [2023-02-25T00:23:14.602161 #14983]  INFO -- Kitchen: #11 [ 8/13] RUN chmod 0700 /home/kitchen/.ssh
+I, [2023-02-25T00:23:14.602190 #14983]  INFO -- Kitchen: #11 sha256:755da3cb9fd106a3902b61f10c09bd8fc44ae1e7c6c07a068f2820e9cd49ee75
+I, [2023-02-25T00:23:14.602220 #14983]  INFO -- Kitchen: #11 CACHED
+I, [2023-02-25T00:23:14.602248 #14983]  INFO -- Kitchen: 
+I, [2023-02-25T00:23:14.602276 #14983]  INFO -- Kitchen: #7 [ 4/13] RUN echo "kitchen ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/kitchen
+I, [2023-02-25T00:23:14.602321 #14983]  INFO -- Kitchen: #7 sha256:bdc2488f63e2f793a43c4eca3d92e515d6b8911ac0d1df7c4a7528d4b7b02282
+I, [2023-02-25T00:23:14.602354 #14983]  INFO -- Kitchen: #7 CACHED
+I, [2023-02-25T00:23:14.602382 #14983]  INFO -- Kitchen: 
+I, [2023-02-25T00:23:14.602722 #14983]  INFO -- Kitchen: #14 [11/13] RUN chmod 0600 /home/kitchen/.ssh/authorized_keys
+I, [2023-02-25T00:23:14.602751 #14983]  INFO -- Kitchen: #14 sha256:50dd31e0bc12b065246d78bed5dbfdab7f6920fb8f455e9c006a3f171790f3fa
+I, [2023-02-25T00:23:14.602783 #14983]  INFO -- Kitchen: #14 CACHED
+I, [2023-02-25T00:23:14.602810 #14983]  INFO -- Kitchen: 
+I, [2023-02-25T00:23:14.602839 #14983]  INFO -- Kitchen: #13 [10/13] RUN chown kitchen /home/kitchen/.ssh/authorized_keys
+I, [2023-02-25T00:23:14.602866 #14983]  INFO -- Kitchen: #13 sha256:ef7566b129dc89283b4bf5ab755a628c1d027c0d961a3da0067fa57a369d9efd
+I, [2023-02-25T00:23:14.602893 #14983]  INFO -- Kitchen: #13 CACHED
+I, [2023-02-25T00:23:14.602920 #14983]  INFO -- Kitchen: 
+I, [2023-02-25T00:23:14.602951 #14983]  INFO -- Kitchen: #8 [ 5/13] RUN echo "Defaults !requiretty" >> /etc/sudoers.d/kitchen
+I, [2023-02-25T00:23:14.602978 #14983]  INFO -- Kitchen: #8 sha256:edf5fb916c58a20319e80171aced2902cdb6fc65544d7146d7f80a66d67560a1
+I, [2023-02-25T00:23:14.603005 #14983]  INFO -- Kitchen: #8 CACHED
+I, [2023-02-25T00:23:14.603031 #14983]  INFO -- Kitchen: 
+I, [2023-02-25T00:23:14.603057 #14983]  INFO -- Kitchen: #12 [ 9/13] RUN touch /home/kitchen/.ssh/authorized_keys
+I, [2023-02-25T00:23:14.603084 #14983]  INFO -- Kitchen: #12 sha256:69dd5e169d1f121aa8f1f886b6d0043acc6b451236fdaf8d6833a1e383246baf
+I, [2023-02-25T00:23:14.603111 #14983]  INFO -- Kitchen: #12 CACHED
+I, [2023-02-25T00:23:14.603938 #14983]  INFO -- Kitchen: 
+I, [2023-02-25T00:23:14.603980 #14983]  INFO -- Kitchen: #6 [ 3/13] RUN if ! getent passwd kitchen; then                   useradd -d /home/kitchen -m -s /bin/bash -p '*' kitchen;                 fi
+I, [2023-02-25T00:23:14.604016 #14983]  INFO -- Kitchen: #6 sha256:67f6817e0bfb5dec9db696f27e335fdc80e507206503ca1c24e704ebb948a001
+I, [2023-02-25T00:23:14.604053 #14983]  INFO -- Kitchen: #6 CACHED
+I, [2023-02-25T00:23:14.604081 #14983]  INFO -- Kitchen: 
+I, [2023-02-25T00:23:14.604109 #14983]  INFO -- Kitchen: #10 [ 7/13] RUN chown -R kitchen /home/kitchen/.ssh
+I, [2023-02-25T00:23:14.604139 #14983]  INFO -- Kitchen: #10 sha256:4cbad09ddaa2679c395ca7743439fad8f36b5bb384bad128c4ad01ef70730f96
+I, [2023-02-25T00:23:14.604167 #14983]  INFO -- Kitchen: #10 CACHED
+I, [2023-02-25T00:23:14.604193 #14983]  INFO -- Kitchen: 
+I, [2023-02-25T00:23:14.604224 #14983]  INFO -- Kitchen: #9 [ 6/13] RUN mkdir -p /home/kitchen/.ssh
+I, [2023-02-25T00:23:14.604256 #14983]  INFO -- Kitchen: #9 sha256:2b862bdde62a3e3d9d7a3cb07d5ef078580de285d638f62a27fb8460df09b0cf
+I, [2023-02-25T00:23:14.604286 #14983]  INFO -- Kitchen: #9 CACHED
+I, [2023-02-25T00:23:14.604324 #14983]  INFO -- Kitchen: 
+I, [2023-02-25T00:23:14.604357 #14983]  INFO -- Kitchen: #15 [12/13] RUN mkdir -p /run/sshd
+I, [2023-02-25T00:23:14.604392 #14983]  INFO -- Kitchen: #15 sha256:15b851e507c2a5469764657e3f2aafb090c9ef5b691a0a5d9768f1a61ea8fc7a
+I, [2023-02-25T00:23:14.604451 #14983]  INFO -- Kitchen: #15 CACHED
+I, [2023-02-25T00:23:14.604482 #14983]  INFO -- Kitchen: 
+I, [2023-02-25T00:23:14.604511 #14983]  INFO -- Kitchen: #5 [ 2/13] RUN [ ! -f "/sbin/initctl" ] || dpkg-divert --local --rename --add /sbin/initctl                 && ln -sf /bin/true /sbin/initctl
+I, [2023-02-25T00:23:14.604539 #14983]  INFO -- Kitchen: #5 sha256:ca170735b329eaf1e77b8e0fcb131351c5b44ba444e8c741c5088784a7de9952
+I, [2023-02-25T00:23:14.604566 #14983]  INFO -- Kitchen: #5 CACHED
+I, [2023-02-25T00:23:14.604753 #14983]  INFO -- Kitchen: 
+I, [2023-02-25T00:23:14.604788 #14983]  INFO -- Kitchen: #16 [13/13] RUN echo ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCx9KAXXM6Wz15e/TeV4LiEm3vPvRMigZuXcy2Ghh7SvL2MG/bieS636lERfMzcQCVBzHhsn+xf//yYHKrJIfoYbiKdH8EFn4Cd25uQI+Gbwx80a+PbLJLhIDU6oGyhhbhRPdSGhtyQ1NKnklBM/Je0d5DSDW3I0uAlhI0XjE8aVvKebKyyq5oqGuBe6CDkIu/pMLEur5vObTp4Dx8QmjI+Uz6VDy0Cs+clPzmX1ZiLFk29P4jG3KT9AIioV9yi58RU5TAxgVUK3UVQASe1g3gWfw1v+R0bHjSzomiXZau6/lAsesLJ46/U5cnZ6DMKntcMXDyA+XAywk9yAnbY8X3F kitchen_docker_key >> /home/kitchen/.ssh/authorized_keys
+I, [2023-02-25T00:23:14.604833 #14983]  INFO -- Kitchen: #16 sha256:fb8a2646d2212f5374f1e153618f4a4281d0f019355f5ee3850af82c505b2969
+I, [2023-02-25T00:23:14.604863 #14983]  INFO -- Kitchen: #16 CACHED
+I, [2023-02-25T00:23:14.604889 #14983]  INFO -- Kitchen: 
+I, [2023-02-25T00:23:14.604917 #14983]  INFO -- Kitchen: #17 exporting to image
+I, [2023-02-25T00:23:14.604943 #14983]  INFO -- Kitchen: #17 sha256:e8c613e07b0b7ff33893b694f7759a10d42e180f2b4dc349fb57dc6b71dcab00
+I, [2023-02-25T00:23:14.604970 #14983]  INFO -- Kitchen: #17 exporting layers done
+I, [2023-02-25T00:23:14.604997 #14983]  INFO -- Kitchen: #17 writing image sha256:655ba354315ade03850a8af772deb813c2c0342a84a2605143ca7f685d86a49f done
+I, [2023-02-25T00:23:14.605024 #14983]  INFO -- Kitchen: #17 DONE 0.0s
+I, [2023-02-25T00:23:14.820330 #14983]  INFO -- Kitchen: 7b89fbb0bcc18756056166ec394ac059d83a1083c6579905eb42411eb060c7d2
+I, [2023-02-25T00:23:15.185471 #14983]  INFO -- Kitchen: 0.0.0.0:53270
+I, [2023-02-25T00:23:18.310849 #14983]  INFO -- Kitchen: -----> Converging <default-debian-11-master-py3>...
+I, [2023-02-25T00:23:33.049246 #14983]  INFO -- Kitchen: -----> Setting up <default-debian-11-master-py3>...
+I, [2023-02-25T00:23:33.050462 #14983]  INFO -- Kitchen: -----> Verifying <default-debian-11-master-py3>...
+E, [2023-02-25T00:23:35.305953 #14983] ERROR -- Kitchen: ------Exception-------
+E, [2023-02-25T00:23:35.306070 #14983] ERROR -- Kitchen: Class: Kitchen::ActionFailed
+E, [2023-02-25T00:23:35.306107 #14983] ERROR -- Kitchen: Message: 1 actions failed.
+>>>>>>     Verify failed on instance <default-debian-11-master-py3>.  Please see .kitchen/logs/default-debian-11-master-py3.log for more details
+E, [2023-02-25T00:23:35.306137 #14983] ERROR -- Kitchen: ----------------------
+E, [2023-02-25T00:23:35.306167 #14983] ERROR -- Kitchen: ------Backtrace-------
+E, [2023-02-25T00:23:35.306195 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/command.rb:181:in `report_errors'
+E, [2023-02-25T00:23:35.306226 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/command.rb:172:in `run_action'
+E, [2023-02-25T00:23:35.306254 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/command/test.rb:41:in `block in call'
+E, [2023-02-25T00:23:35.306281 #14983] ERROR -- Kitchen: /Users/vveliev/.rubies/ruby-2.7.6/lib/ruby/2.7.0/benchmark.rb:293:in `measure'
+E, [2023-02-25T00:23:35.306309 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/command/test.rb:37:in `call'
+E, [2023-02-25T00:23:35.306337 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/cli.rb:52:in `perform'
+E, [2023-02-25T00:23:35.306365 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/cli.rb:250:in `test'
+E, [2023-02-25T00:23:35.306393 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/thor-1.2.1/lib/thor/command.rb:27:in `run'
+E, [2023-02-25T00:23:35.306422 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/thor-1.2.1/lib/thor/invocation.rb:127:in `invoke_command'
+E, [2023-02-25T00:23:35.306451 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/thor-1.2.1/lib/thor.rb:392:in `dispatch'
+E, [2023-02-25T00:23:35.306479 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/thor-1.2.1/lib/thor/base.rb:485:in `start'
+E, [2023-02-25T00:23:35.306508 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/bin/kitchen:11:in `block in <top (required)>'
+E, [2023-02-25T00:23:35.306541 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/errors.rb:183:in `with_friendly_errors'
+E, [2023-02-25T00:23:35.306570 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/bin/kitchen:11:in `<top (required)>'
+E, [2023-02-25T00:23:35.306615 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/bin/kitchen:23:in `load'
+E, [2023-02-25T00:23:35.306643 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/bin/kitchen:23:in `<top (required)>'
+E, [2023-02-25T00:23:35.306668 #14983] ERROR -- Kitchen: /Users/vveliev/.rubies/ruby-2.7.6/lib/ruby/2.7.0/bundler/cli/exec.rb:63:in `load'
+E, [2023-02-25T00:23:35.306693 #14983] ERROR -- Kitchen: /Users/vveliev/.rubies/ruby-2.7.6/lib/ruby/2.7.0/bundler/cli/exec.rb:63:in `kernel_load'
+E, [2023-02-25T00:23:35.306718 #14983] ERROR -- Kitchen: /Users/vveliev/.rubies/ruby-2.7.6/lib/ruby/2.7.0/bundler/cli/exec.rb:28:in `run'
+E, [2023-02-25T00:23:35.306742 #14983] ERROR -- Kitchen: /Users/vveliev/.rubies/ruby-2.7.6/lib/ruby/2.7.0/bundler/cli.rb:476:in `exec'
+E, [2023-02-25T00:23:35.306767 #14983] ERROR -- Kitchen: /Users/vveliev/.rubies/ruby-2.7.6/lib/ruby/2.7.0/bundler/vendor/thor/lib/thor/command.rb:27:in `run'
+E, [2023-02-25T00:23:35.306792 #14983] ERROR -- Kitchen: /Users/vveliev/.rubies/ruby-2.7.6/lib/ruby/2.7.0/bundler/vendor/thor/lib/thor/invocation.rb:127:in `invoke_command'
+E, [2023-02-25T00:23:35.306817 #14983] ERROR -- Kitchen: /Users/vveliev/.rubies/ruby-2.7.6/lib/ruby/2.7.0/bundler/vendor/thor/lib/thor.rb:399:in `dispatch'
+E, [2023-02-25T00:23:35.306844 #14983] ERROR -- Kitchen: /Users/vveliev/.rubies/ruby-2.7.6/lib/ruby/2.7.0/bundler/cli.rb:30:in `dispatch'
+E, [2023-02-25T00:23:35.306868 #14983] ERROR -- Kitchen: /Users/vveliev/.rubies/ruby-2.7.6/lib/ruby/2.7.0/bundler/vendor/thor/lib/thor/base.rb:476:in `start'
+E, [2023-02-25T00:23:35.306893 #14983] ERROR -- Kitchen: /Users/vveliev/.rubies/ruby-2.7.6/lib/ruby/2.7.0/bundler/cli.rb:24:in `start'
+E, [2023-02-25T00:23:35.306938 #14983] ERROR -- Kitchen: /Users/vveliev/.rubies/ruby-2.7.6/lib/ruby/gems/2.7.0/gems/bundler-2.1.4/libexec/bundle:46:in `block in <top (required)>'
+E, [2023-02-25T00:23:35.306963 #14983] ERROR -- Kitchen: /Users/vveliev/.rubies/ruby-2.7.6/lib/ruby/2.7.0/bundler/friendly_errors.rb:123:in `with_friendly_errors'
+E, [2023-02-25T00:23:35.306988 #14983] ERROR -- Kitchen: /Users/vveliev/.rubies/ruby-2.7.6/lib/ruby/gems/2.7.0/gems/bundler-2.1.4/libexec/bundle:34:in `<top (required)>'
+E, [2023-02-25T00:23:35.307013 #14983] ERROR -- Kitchen: /Users/vveliev/.rubies/ruby-2.7.6/bin/bundle:23:in `load'
+E, [2023-02-25T00:23:35.307039 #14983] ERROR -- Kitchen: /Users/vveliev/.rubies/ruby-2.7.6/bin/bundle:23:in `<main>'
+E, [2023-02-25T00:23:35.307063 #14983] ERROR -- Kitchen: ----End Backtrace-----
+E, [2023-02-25T00:23:35.307087 #14983] ERROR -- Kitchen: -Composite Exception--
+E, [2023-02-25T00:23:35.307119 #14983] ERROR -- Kitchen: Class: Kitchen::InstanceFailure
+E, [2023-02-25T00:23:35.307144 #14983] ERROR -- Kitchen: Message: Verify failed on instance <default-debian-11-master-py3>.  Please see .kitchen/logs/default-debian-11-master-py3.log for more details
+E, [2023-02-25T00:23:35.307172 #14983] ERROR -- Kitchen: ----------------------
+E, [2023-02-25T00:23:35.307198 #14983] ERROR -- Kitchen: ------Backtrace-------
+E, [2023-02-25T00:23:35.307225 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/kitchen-inspec-2.6.1/lib/kitchen/verifier/inspec.rb:114:in `call'
+E, [2023-02-25T00:23:35.307251 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:469:in `block in verify_action'
+E, [2023-02-25T00:23:35.307276 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:560:in `block in synchronize_or_call'
+E, [2023-02-25T00:23:35.307300 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:558:in `synchronize'
+E, [2023-02-25T00:23:35.307324 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:558:in `synchronize_or_call'
+E, [2023-02-25T00:23:35.307349 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:524:in `block in action'
+E, [2023-02-25T00:23:35.307388 #14983] ERROR -- Kitchen: /Users/vveliev/.rubies/ruby-2.7.6/lib/ruby/2.7.0/benchmark.rb:293:in `measure'
+E, [2023-02-25T00:23:35.307414 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:523:in `action'
+E, [2023-02-25T00:23:35.307439 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:461:in `verify_action'
+E, [2023-02-25T00:23:35.307463 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:392:in `block (2 levels) in transition_to'
+E, [2023-02-25T00:23:35.307488 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/lifecycle_hooks.rb:47:in `run_with_hooks'
+E, [2023-02-25T00:23:35.307512 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:391:in `block in transition_to'
+E, [2023-02-25T00:23:35.307536 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:390:in `each'
+E, [2023-02-25T00:23:35.307560 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:390:in `transition_to'
+E, [2023-02-25T00:23:35.307585 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:161:in `verify'
+E, [2023-02-25T00:23:35.307609 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:190:in `block in test'
+E, [2023-02-25T00:23:35.307632 #14983] ERROR -- Kitchen: /Users/vveliev/.rubies/ruby-2.7.6/lib/ruby/2.7.0/benchmark.rb:293:in `measure'
+E, [2023-02-25T00:23:35.307656 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:186:in `test'
+E, [2023-02-25T00:23:35.307679 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/command.rb:195:in `public_send'
+E, [2023-02-25T00:23:35.307703 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/command.rb:195:in `run_action_in_thread'
+E, [2023-02-25T00:23:35.307727 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/command.rb:166:in `block (2 levels) in run_action'
+E, [2023-02-25T00:23:35.307751 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/logging-2.3.1/lib/logging/diagnostic_context.rb:474:in `block in create_with_logging_context'
+E, [2023-02-25T00:23:35.307777 #14983] ERROR -- Kitchen: ----End Backtrace-----
+E, [2023-02-25T00:23:35.307799 #14983] ERROR -- Kitchen: ---Nested Exception---
+E, [2023-02-25T00:23:35.307822 #14983] ERROR -- Kitchen: Class: Kitchen::ActionFailed
+E, [2023-02-25T00:23:35.307846 #14983] ERROR -- Kitchen: Message: InSpec Runner returns 1
+E, [2023-02-25T00:23:35.307871 #14983] ERROR -- Kitchen: ----------------------
+E, [2023-02-25T00:23:35.307894 #14983] ERROR -- Kitchen: ------Backtrace-------
+E, [2023-02-25T00:23:35.307917 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/kitchen-inspec-2.6.1/lib/kitchen/verifier/inspec.rb:114:in `call'
+E, [2023-02-25T00:23:35.307941 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:469:in `block in verify_action'
+E, [2023-02-25T00:23:35.307964 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:560:in `block in synchronize_or_call'
+E, [2023-02-25T00:23:35.307988 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:558:in `synchronize'
+E, [2023-02-25T00:23:35.308012 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:558:in `synchronize_or_call'
+E, [2023-02-25T00:23:35.308035 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:524:in `block in action'
+E, [2023-02-25T00:23:35.308059 #14983] ERROR -- Kitchen: /Users/vveliev/.rubies/ruby-2.7.6/lib/ruby/2.7.0/benchmark.rb:293:in `measure'
+E, [2023-02-25T00:23:35.308095 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:523:in `action'
+E, [2023-02-25T00:23:35.308126 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:461:in `verify_action'
+E, [2023-02-25T00:23:35.308155 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:392:in `block (2 levels) in transition_to'
+E, [2023-02-25T00:23:35.308181 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/lifecycle_hooks.rb:47:in `run_with_hooks'
+E, [2023-02-25T00:23:35.308205 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:391:in `block in transition_to'
+E, [2023-02-25T00:23:35.308229 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:390:in `each'
+E, [2023-02-25T00:23:35.308253 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:390:in `transition_to'
+E, [2023-02-25T00:23:35.308277 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:161:in `verify'
+E, [2023-02-25T00:23:35.308303 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:190:in `block in test'
+E, [2023-02-25T00:23:35.308327 #14983] ERROR -- Kitchen: /Users/vveliev/.rubies/ruby-2.7.6/lib/ruby/2.7.0/benchmark.rb:293:in `measure'
+E, [2023-02-25T00:23:35.308351 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/instance.rb:186:in `test'
+E, [2023-02-25T00:23:35.308375 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/command.rb:195:in `public_send'
+E, [2023-02-25T00:23:35.308398 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/command.rb:195:in `run_action_in_thread'
+E, [2023-02-25T00:23:35.308422 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/test-kitchen-3.3.1/lib/kitchen/command.rb:166:in `block (2 levels) in run_action'
+E, [2023-02-25T00:23:35.308446 #14983] ERROR -- Kitchen: /Users/vveliev/.gem/ruby/2.7.6/gems/logging-2.3.1/lib/logging/diagnostic_context.rb:474:in `block in create_with_logging_context'
+E, [2023-02-25T00:23:35.308470 #14983] ERROR -- Kitchen: ----End Backtrace-----

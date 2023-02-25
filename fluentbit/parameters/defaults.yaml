@@ -1,0 +1,35 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+#
+# Set default values.
+---
+values:
+  version: v2.0.9
+  pkg:
+    name: fluentbit
+    use_upstream_repo: false
+    use_upstream_archive: true
+    archive:
+      name: /usr/local
+      uri: https://packages.fluentbit.io/
+      source: null
+      source_hash: null
+      trim_output: true
+      archive_suffix: tar.gz
+      archive_format: tar
+      enforce_toplevel: true
+    repo: {}
+  user: fluentbit
+  group: fluentbit
+  rootgroup: root
+  config: "/etc/fluentbit"
+  service:
+    name: fluentbit
+    flush: 5
+    daemon: "Off"
+    log_level: info
+    plugins_file: plugins.conf
+    http_server: "Off"
+    http_listen: 0.0.0.0
+    http_port: 2020
+    log_file: false
