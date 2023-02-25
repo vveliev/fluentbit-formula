@@ -1,12 +1,12 @@
-{%- from "fluent-bit/map.jinja" import bit with context -%}
+{%- from tplroot ~ "/libs/map.jinja" import mapdata as fluentbit with context %}
 [Unit]
-Description={{ bit.pkg |replace("-", " ") | title }}
+Description={{ fluentbit.pkg |replace("-", " ") | title }}
 Requires=network.target
 After=network.target
 
 [Service]
 Type=simple
-ExecStart=/opt/{{ bit.pkg }}/bin/{{ bit.pkg }} -c /etc/{{ bit.pkg }}/{{ bit.pkg }}.conf -R /etc/{{ bit.pkg }}/parsers.conf
+ExecStart=/opt/{{ fluentbit.pkg }}/bin/{{ fluentbit.pkg }} -c /etc/{{ fluentbit.pkg }}/{{ fluentbit.pkg }}.conf -R /etc/{{ fluentbit.pkg }}/parsers.conf
 Restart=always
 
 [Install]
