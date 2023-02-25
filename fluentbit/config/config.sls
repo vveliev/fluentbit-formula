@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 # vim: ft=sls
 
-{% from "fluent-bit/map.jinja" import bit with context %}
-
 {#- Get the `tplroot` from `tpldir` #}
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- set sls_repo_install = tplroot ~ '.package.repo.install' %}
@@ -10,7 +8,7 @@
 
 fluent_bit-config:
   file.managed:
-    - name: /etc/{{ bit.pkg }}/{{ bit.pkg }}.conf
+    - name: /etc/{{ fluentbit.pkg }}/{{ fluentbit.pkg }}.conf
     - source: salt://fluent-bit/files/td-agent-bit.conf.jinja
     - mode: 644
     - makedirs: True
@@ -44,7 +42,7 @@ fluent_bit-config-parsers:
 
 fluent_bit-config-parsers-default-file:
   file.managed:
-    - name: /etc/{{ bit.pkg }}/parsers.d/default_parsers.conf
+    - name: /etc/{{ fluentbit.pkg }}/parsers.d/default_parsers.conf
     - source: salt://fluent-bit/files/templates/default_parsers.conf
     - mode: 644
     - makedirs: True
@@ -55,7 +53,7 @@ fluent_bit-config-parsers-default-file:
 {%- for parser_name,values in salt.pillar.get('fluent_bit:parsers', {}).items()  %}
 fluent_bit-config-parser-add-{{ parser_name }}:
   file.managed:
-    - name: /etc/{{ bit.pkg }}/parsers.d/lable-{{ parser_name }}.conf
+    - name: /etc/{{ fluentbit.pkg }}/parsers.d/lable-{{ parser_name }}.conf
     - source: salt://fluent-bit/files/templates/fluent-config-template.conf
     - user: {{ fluentbit.user }}
     - group: {{ fluentbit.group }}
@@ -70,7 +68,7 @@ fluent_bit-config-parser-add-{{ parser_name }}:
 
 fluent_bit-log_directory:
   file.directory:
-    - name: '/var/log/{{ bit.pkg }}/'
+    - name: '/var/log/{{ fluentbit.pkg }}/'
     - makedirs: True
     - user: {{ fluentbit.user }}
     - group: {{ fluentbit.group }}
