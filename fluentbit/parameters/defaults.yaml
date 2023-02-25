@@ -19,6 +19,8 @@ values:
       archive_format: tar
       enforce_toplevel: true
     repo: {}
+  user: fluentbit
+  group: fluentbit
   rootgroup: root
   config: "/etc/fluentbit"
   service:

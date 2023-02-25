@@ -3,23 +3,28 @@
 
 {% from "fluent-bit/map.jinja" import bit with context %}
 
+{#- Get the `tplroot` from `tpldir` #}
+{%- set tplroot = tpldir.split('/')[0] %}
+{%- set sls_repo_install = tplroot ~ '.package.repo.install' %}
+{%- from tplroot ~ "/libs/map.jinja" import mapdata as fluentbit with context %}
+
 fluent_bit-config:
   file.managed:
     - name: /etc/{{ bit.pkg }}/{{ bit.pkg }}.conf
     - source: salt://fluent-bit/files/td-agent-bit.conf.jinja
     - mode: 644
     - makedirs: True
-    - user: {{ bit.user }}
-    - group: {{ bit.group }}
+    - user: {{ fluentbit.user }}
+    - group: {{ fluentbit.group }}
     - template: jinja
 
-{%- for config_name,values in salt.pillar.get('fluent_bit:configs', {}).items()  %}
+{%- for config_name,values in salt.pillar.get('fluentbit:configs', {}).items()  %}
 fluent_bit-config-add-{{ config_name }}:
   file.managed:
-    - name: /etc/{{ bit.pkg }}/conf.d/lable-{{ config_name }}.conf
+    - name: /etc/{{ fluentbit.pkg }}/conf.d/lable-{{ config_name }}.conf
     - source: salt://fluent-bit/files/templates/fluent-config-template.conf
-    - user: {{ bit.user }}
-    - group: {{ bit.group }}
+    - user: {{ fluentbit.user }}
+    - group: {{ fluentbit.group }}
     - template: jinja
     - makedirs: True
     - context:
@@ -29,12 +34,12 @@ fluent_bit-config-add-{{ config_name }}:
 
 fluent_bit-config-parsers:
   file.managed:
-    - name: /etc/{{ bit.pkg }}/parsers.conf
-    - source: salt://fluent-bit/files/parsers.conf.jinja
+    - name: /etc/{{ fluentbit.pkg }}/parsers.conf
+    - source: salt://fluentbit/files/parsers.conf.jinja
     - mode: 644
     - makedirs: True
-    - user: {{ bit.user }}
-    - group: {{ bit.group }}
+    - user: {{ fluentbit.user }}
+    - group: {{ fluentbit.group }}
     - template: jinja
 
 fluent_bit-config-parsers-default-file:
@@ -43,8 +48,8 @@ fluent_bit-config-parsers-default-file:
     - source: salt://fluent-bit/files/templates/default_parsers.conf
     - mode: 644
     - makedirs: True
-    - user: {{ bit.user }}
-    - group: {{ bit.group }}
+    - user: {{ fluentbit.user }}
+    - group: {{ fluentbit.group }}
     - template: jinja
 
 {%- for parser_name,values in salt.pillar.get('fluent_bit:parsers', {}).items()  %}
@@ -52,15 +57,9 @@ fluent_bit-config-parser-add-{{ parser_name }}:
   file.managed:
     - name: /etc/{{ bit.pkg }}/parsers.d/lable-{{ parser_name }}.conf
     - source: salt://fluent-bit/files/templates/fluent-config-template.conf
-    - user: {{ bit.user }}
-    - group: {{ bit.group }}
+    - user: {{ fluentbit.user }}
+    - group: {{ fluentbit.group }}
     - template: jinja
-<<<<<<< HEAD
-    - makedirs: True  
-    - context:
-        settings: {{ values.settings }}
-{% endfor %}
-=======
     - makedirs: True
     - context:
         settings: {{ values.settings }}
@@ -73,8 +72,8 @@ fluent_bit-log_directory:
   file.directory:
     - name: '/var/log/{{ bit.pkg }}/'
     - makedirs: True
-    - user: {{ bit.user }}
-    - group: {{ bit.group }}
+    - user: {{ fluentbit.user }}
+    - group: {{ fluentbit.group }}
     - recurse:
       - user
       - group
@@ -89,10 +88,9 @@ fluent_bit-init-file:
     - name: /etc/init/fluentd.conf
     {%- endif %}
     - mode: '0644'
-    - user: {{ bit.user }}
-    - group: {{ bit.group }}
+    - user: {{ fluentbit.user }}
+    - group: {{ fluentbit.group }}
     - template: jinja
     - context:
-        user: {{ bit.user }}
-        group: {{ bit.group }}
->>>>>>> daea4d0 (Fixed systemd service)
+        user: {{ fluentbit.user }}
+        group: {{ fluentbit.group }}
