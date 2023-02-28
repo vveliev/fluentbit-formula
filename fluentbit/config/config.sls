@@ -6,7 +6,7 @@
 {%- set sls_repo_install = tplroot ~ '.package.repo.install' %}
 {%- from tplroot ~ "/libs/map.jinja" import mapdata as fluentbit with context %}
 
-fluent_bit-config:
+fluentbit-config:
   file.managed:
     - name: /etc/{{ fluentbit.pkg }}/{{ fluentbit.pkg }}.conf
     - source: salt://fluent-bit/files/td-agent-bit.conf.jinja
@@ -17,7 +17,7 @@ fluent_bit-config:
     - template: jinja
 
 {%- for config_name,values in salt.pillar.get('fluentbit:configs', {}).items()  %}
-fluent_bit-config-add-{{ config_name }}:
+fluentbit-config-add-{{ config_name }}:
   file.managed:
     - name: /etc/{{ fluentbit.pkg }}/conf.d/lable-{{ config_name }}.conf
     - source: salt://fluent-bit/files/templates/fluent-config-template.conf
@@ -30,7 +30,7 @@ fluent_bit-config-add-{{ config_name }}:
 {% endfor %}
 
 
-fluent_bit-config-parsers:
+fluentbit-config-parsers:
   file.managed:
     - name: /etc/{{ fluentbit.pkg }}/parsers.conf
     - source: salt://fluentbit/files/parsers.conf.jinja
@@ -40,7 +40,7 @@ fluent_bit-config-parsers:
     - group: {{ fluentbit.group }}
     - template: jinja
 
-fluent_bit-config-parsers-default-file:
+fluentbit-config-parsers-default-file:
   file.managed:
     - name: /etc/{{ fluentbit.pkg }}/parsers.d/default_parsers.conf
     - source: salt://fluent-bit/files/templates/default_parsers.conf
@@ -50,8 +50,8 @@ fluent_bit-config-parsers-default-file:
     - group: {{ fluentbit.group }}
     - template: jinja
 
-{%- for parser_name,values in salt.pillar.get('fluent_bit:parsers', {}).items()  %}
-fluent_bit-config-parser-add-{{ parser_name }}:
+{%- for parser_name,values in salt.pillar.get('fluentbit:parsers', {}).items()  %}
+fluentbit-config-parser-add-{{ parser_name }}:
   file.managed:
     - name: /etc/{{ fluentbit.pkg }}/parsers.d/lable-{{ parser_name }}.conf
     - source: salt://fluent-bit/files/templates/fluent-config-template.conf
@@ -66,7 +66,7 @@ fluent_bit-config-parser-add-{{ parser_name }}:
 
 
 
-fluent_bit-log_directory:
+fluentbit-log_directory:
   file.directory:
     - name: '/var/log/{{ fluentbit.pkg }}/'
     - makedirs: True
@@ -76,7 +76,7 @@ fluent_bit-log_directory:
       - user
       - group
 
-fluent_bit-init-file:
+fluentbit-init-file:
   file.managed:
     {%- if salt['test.provider']('service').startswith('systemd') %}
     - source: salt://fluent-bit/files/templates/service.systemd.jinja
