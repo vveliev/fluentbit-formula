@@ -14,5 +14,3 @@
 values:
   pkg:
     name: fluentbit-ubuntu
-  config: /etc/fluentbit.d/custom-ubuntu.conf
-...

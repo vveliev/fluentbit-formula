@@ -11,6 +11,3 @@
 # you can remove this file or provide at least an empty dict, e.g.
 # values: {}
 ---
-values:
-  config: /etc/fluentbit.d/custom-ubuntu-18.04.conf
-...

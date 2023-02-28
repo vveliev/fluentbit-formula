@@ -14,5 +14,3 @@
 values:
   pkg:
     name: fluentbit-centos-6
-  config: /etc/fluentbit.d/custom-centos-6.conf
-...

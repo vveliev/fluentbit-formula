@@ -1,9 +1,9 @@
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- from tplroot ~ "/libs/map.jinja" import mapdata as fluentbit with context %}
 
-fluentbit-log_directory:
+fluentbit-log-file-directory:
   file.directory:
-    - name: '/var/log/{{ fluentbit.pkg }}/'
+    - name: '/var/log/{{ fluentbit.service.name }}/{{ fluentbit.config.filename }}'
     - makedirs: True
     - user: {{ fluentbit.user }}
     - group: {{ fluentbit.group }}
@@ -14,10 +14,10 @@ fluentbit-log_directory:
 fluentbit-init-file:
   file.managed:
     {%- if salt['test.provider']('service').startswith('systemd') %}
-    - source: salt://fluent-bit/files/templates/service.systemd.jinja
+    - source: "salt://{{ tplroot }}/files/templates/service.systemd.jinja
     - name: /etc/systemd/system/td-agent-bit.service
     {%- elif salt['test.provider']('service') == 'upstart' %}
-    - source: salt://fluent-bit/files/templates/service.upstart.jinja
+    - source: "salt://{{ tplroot }}/files/templates/service.upstart.jinja"
     - name: /etc/init/fluentd.conf
     {%- endif %}
     - mode: '0644'
@@ -25,15 +25,14 @@ fluentbit-init-file:
     - group: {{ fluentbit.group }}
     - template: jinja
     - context:
-        user: {{ fluentbit.user }}
-        group: {{ fluentbit.group }}
+        fluentbit: {{ fluentbit }}
 
 
 
 {%- if fluentbit.service %}
 fluentbit-service:
   service.running:
-    - name: {{ fluentbit.process_name }}
+    - name: {{ fluentbit.service.name }}
     - enable: True
     - user: {{ fluentbit.user }}
     - group: {{ fluentbit.group }}

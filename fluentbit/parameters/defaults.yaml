@@ -22,14 +22,23 @@ values:
   user: fluentbit
   group: fluentbit
   rootgroup: root
-  config: "/etc/fluentbit"
   service:
+    enable: true
+    path: /etc/init/consul.conf
+    log_file: agent.log
+  config:
+    path: "/etc/fluentbit"
     name: fluentbit
-    flush: 5
-    daemon: "Off"
-    log_level: info
-    plugins_file: plugins.conf
-    http_server: "Off"
-    http_listen: 0.0.0.0
-    http_port: 2020
-    log_file: false
+    filename: td-agent-bit.conf
+    config:
+      - service:
+          flush: 5
+          daemon: "Off"
+          log_level: info
+          plugins_file: plugins.conf
+          http_server: "Off"
+          http_listen: 0.0.0.0
+          http_port: 2020
+          log_file: false
+      - output:
+          test: test

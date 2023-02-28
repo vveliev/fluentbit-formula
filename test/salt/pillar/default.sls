@@ -15,8 +15,6 @@ fluentbit:
     name: bash
   service:
     name: systemd-journald
-  config: /etc/template-formula.conf
-
   tofs:
     # The files_switch key serves as a selector for alternative
     # directories under the formula files directory. See TOFS pattern

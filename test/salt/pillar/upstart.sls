@@ -15,7 +15,6 @@ fluentbit:
     name: cronie
   service:
     name: crond
-  config: /etc/template-formula.conf
 
   tofs:
     # The files_switch key serves as a selector for alternative
