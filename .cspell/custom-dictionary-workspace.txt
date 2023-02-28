@@ -7,7 +7,11 @@ Imran
 logtag
 mapdata
 Moreda
+mtab
+osarch
+osfinger
 rootgroup
 rubocop
+tmpl
 tofs
 toplevel
