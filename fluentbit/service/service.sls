@@ -1,7 +1,7 @@
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- from tplroot ~ "/libs/map.jinja" import mapdata as fluentbit with context %}
 
-fluent_bit-log_directory:
+fluentbit-log_directory:
   file.directory:
     - name: '/var/log/{{ fluentbit.pkg }}/'
     - makedirs: True
@@ -11,7 +11,7 @@ fluent_bit-log_directory:
       - user
       - group
 
-fluent_bit-init-file:
+fluentbit-init-file:
   file.managed:
     {%- if salt['test.provider']('service').startswith('systemd') %}
     - source: salt://fluent-bit/files/templates/service.systemd.jinja
@@ -31,13 +31,13 @@ fluent_bit-init-file:
 
 
 {%- if fluentbit.service %}
-fluent_bit-service:
+fluentbit-service:
   service.running:
     - name: {{ fluentbit.process_name }}
     - enable: True
     - user: {{ fluentbit.user }}
     - group: {{ fluentbit.group }}
     - watch:
-      - file: fluent_bit-init-file
-      - file: fluent_bit-config*
+      - file: fluentbit-init-file
+      - file: fluentbit-config*
 {%- endif %}

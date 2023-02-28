@@ -1,6 +1,6 @@
 # yamllint disable rule:indentation rule:line-length
 ---
-fluent_bit:
+fluentbit:
   repo:
     version: buster
   user: td-agent-bit
@@ -32,7 +32,7 @@ fluent_bit:
           Name: systemd
           Tag: host.*
           # Systemd_Filter  _SYSTEMD_UNIT=docker.service
-          # # Can be defind multiple times
+          # # Can be defined multiple times
     outputs:
       settings:
         - type: output
