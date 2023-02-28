@@ -19,7 +19,7 @@ fluentbit-formula
    :target: https://github.com/pre-commit/pre-commit
 
 
-A SaltStack formula that for installing and configuring fluent-bit (td-agent-bit)
+A SaltStack formula that for installing and configuring fluentbit (td-agent-bit)
 
 
 General notes
@@ -90,10 +90,10 @@ Installs the fluentbit package
 
 ``fluentbit.config``
 ^^^^^^^^^^^^^^^^^^^^
-Configures the fluent-bit service with upstart/systemd etc
+Configures the fluentbit service with upstart/systemd etc
 
 
-Configures fluent-bit input/output plugins
+Configures fluentbit input/output plugins
 
 
 ``fluentbit.service``

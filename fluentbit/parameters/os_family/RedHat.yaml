@@ -14,5 +14,3 @@
 values:
   pkg:
     name: fluentbit-redhat
-  config: /etc/fluentbit.conf
-...
