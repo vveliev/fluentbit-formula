@@ -13,4 +13,4 @@
 ---
 values:
   pkg:
-    name: fluentbit-ubuntu
+    name: fluent-bit

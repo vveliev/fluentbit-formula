@@ -13,5 +13,4 @@
 ---
 values:
   pkg:
-    name: fluentbit-suse
-...
+    name: fluent-bit

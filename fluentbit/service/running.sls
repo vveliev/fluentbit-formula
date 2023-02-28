@@ -9,9 +9,15 @@
 include:
   - {{ sls_config_file }}
 
+{%- if fluentbit.service.enabled %}
 fluentbit-service-running-service-running:
   service.running:
     - name: {{ fluentbit.service.name }}
     - enable: True
+    - user: {{ fluentbit.user }}
+    - group: {{ fluentbit.group }}
     - watch:
       - sls: {{ sls_config_file }}
+      # - file: fluentbit-service-file-manage-service
+      # - file: fluentbit-config*
+{%- endif %}

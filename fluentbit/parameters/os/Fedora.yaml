@@ -13,7 +13,4 @@
 ---
 values:
   pkg:
-    name: fluentbit-fedora
-  service:
-    name: service-fedora
-...
+    name: fluent-bit
