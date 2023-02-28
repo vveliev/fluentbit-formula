@@ -1,7 +1,11 @@
 # Custom Dictionary Words
 commitlint
+Dehennin
 fluentbit
 fluentd
+Imran
 logtag
 mapdata
+Moreda
 rubocop
+tofs
