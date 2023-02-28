@@ -13,4 +13,4 @@
 ---
 values:
   pkg:
-    name: fluentbit-redhat
+    name: fluent-bit

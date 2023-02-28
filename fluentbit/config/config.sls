@@ -88,19 +88,3 @@ fluentbit-config-parsers-default-file:
 #       - user
 #       - group
 
-fluentbit-init-file:
-  file.managed:
-    {%- if salt['test.provider']('service').startswith('systemd') %}
-    - source: salt://{{ tplroot }}/files/templates/service.systemd.jinja
-    - name: /etc/systemd/system/td-agent-bit.service
-    {%- elif salt['test.provider']('service') == 'upstart' %}
-    - source: salt://{{ tplroot }}/files/templates/service.upstart.jinja
-    - name: /etc/init/fluentd.conf
-    {%- endif %}
-    - mode: '0644'
-    - user: {{ fluentbit.user }}
-    - group: {{ fluentbit.group }}
-    - template: jinja
-    - context:
-        user: {{ fluentbit.user }}
-        group: {{ fluentbit.group }}

@@ -14,7 +14,7 @@ fluentbit:
   pkg:
     name: bash
   service:
-    name: systemd-journald
+    name: fluentbit
   tofs:
     # The files_switch key serves as a selector for alternative
     # directories under the formula files directory. See TOFS pattern
