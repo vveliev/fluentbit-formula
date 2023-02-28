@@ -1,0 +1,7 @@
+# Custom Dictionary Words
+commitlint
+fluentbit
+fluentd
+logtag
+mapdata
+rubocop
