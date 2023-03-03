@@ -2,7 +2,6 @@
 
 control 'fluentbit.config.file' do
   title 'Verify the configuration file'
-
   describe file('/etc/template-formula.conf') do
     it { should be_file }
     it { should be_owned_by 'root' }
