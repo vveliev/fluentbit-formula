@@ -24,7 +24,7 @@ values:
     name: bash
   rootgroup: root
   service:
-    name: systemd-journald
+    name: fluentbit
 
   tofs:
     files_switch:

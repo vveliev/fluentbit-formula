@@ -5,7 +5,7 @@ fluentbit formula
 
 - Fixed systemd service
 - Refactored fluentbit to "bit" and confusing variables
-  pillar still perserve fluentbit to not break compatibility
+  pillar still preserved fluentbit to not break compatibility
 - Better config formatting
 - Added Description detection for systemd unit file
 
