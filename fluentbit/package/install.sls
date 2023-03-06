@@ -12,4 +12,4 @@ include:
 
 fluentbit-package-install-pkg-installed:
   pkg.installed:
-    - name: {{ fluentbit.pkg.name }}
+    - name: {{ fluentbit.package.name }}

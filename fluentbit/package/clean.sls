@@ -11,7 +11,7 @@ include:
 
 fluentbit-package-clean-pkg-removed:
   pkg.removed:
-    - name: {{ fluentbit.pkg.name }}
+    - name: {{ fluentbit.package.name }}
     - require:
       - sls: {{ sls_config_clean }}
 
