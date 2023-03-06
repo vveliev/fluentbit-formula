@@ -6,7 +6,7 @@ fluentbit:
   user: td-agent-bit
   group: td-agent-bit
   process_name: td-agent-bit
-  pkg: td-agent-bit
+  package: td-agent-bit
   agent:
     flush: 5
     daemon: 'Off'

@@ -3,6 +3,9 @@ commitlint
 Dehennin
 fluentbit
 fluentd
+gpgcheck
+gpgkey
+humanname
 Imran
 logtag
 mapdata
@@ -12,6 +15,8 @@ osarch
 osfinger
 rootgroup
 rubocop
+sslcacert
+sslverify
 tmpl
 tofs
 toplevel
