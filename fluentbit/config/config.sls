@@ -10,7 +10,7 @@ fluentbit-config:
   file.managed:
     - name: /etc/{{ fluentbit.pkg }}/{{ fluentbit.pkg }}.conf
     - source: salt://fluent-bit/files/td-agent-bit.conf.jinja
-    - mode: 644
+    - mode: "0644"
     - makedirs: True
     - user: {{ fluentbit.user }}
     - group: {{ fluentbit.group }}
@@ -44,7 +44,7 @@ fluentbit-config-parsers-default-file:
   file.managed:
     - name: /etc/{{ fluentbit.pkg }}/parsers.d/default_parsers.conf
     - source: salt://fluent-bit/files/templates/default_parsers.conf
-    - mode: 644
+    - mode: "0644"
     - makedirs: True
     - user: {{ fluentbit.user }}
     - group: {{ fluentbit.group }}

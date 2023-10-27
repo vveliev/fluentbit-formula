@@ -2,7 +2,7 @@ Writing salt formula
 ====================
 
 Salt formula is a set of files that describe how to install and configure
-software. 
+software.
 
 
 Local development
@@ -22,5 +22,3 @@ To test the formula locally, run:
 .. code:: bash
 
     bundle exec kitchen test debian-11-master-py3
-
-
