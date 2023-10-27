@@ -17,7 +17,7 @@ fluentbit-config-file-file-managed:
                               lookup='fluentbit-config-file-file-managed'
                  )
               }}
-    - mode: 644
+    - mode: "0644"
     - user: root
     - group: {{ fluentbit.rootgroup }}
     - makedirs: True

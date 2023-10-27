@@ -19,4 +19,3 @@ fluentbit-repo-install-pkgrepo-managed-fluentd-official-repository:
     - order: 3
     - comments:
         - installed by saltstack-formula/fluentbit-formula
-
