@@ -21,7 +21,7 @@ values:
       name: deb https://packages.fluentbit.io/ubuntu/{{ os_distrubition }} {{ os_distrubition }} main
       file: /etc/apt/sources.list.d/fluentbit.list
       key_url: https://packages.fluentbit.io/fluentbit.key
-      comments: 
+      comments:
         - installed by saltstack-formula/fluentbit-formula
       gpgcheck: 1
 {%- else %}

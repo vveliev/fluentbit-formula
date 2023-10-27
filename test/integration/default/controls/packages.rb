@@ -12,7 +12,6 @@ control 'fluentbit.package.repo' do
   end
 end
 
-
 control 'fluentbit.package.install' do
   title 'The required package should be installed'
 
