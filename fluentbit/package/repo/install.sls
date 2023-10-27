@@ -7,7 +7,7 @@
 {%- from tplroot ~ "/libs/format_kwargs.jinja" import format_kwargs with context %}
 
 {%- if fluentbit.package.use_upstream_repo %}
-     
+
 grafana-package-repo-install-pkgrepo-managed:
   pkgrepo.managed:
     {{- format_kwargs(fluentbit.package.repo) }}

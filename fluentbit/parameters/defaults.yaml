@@ -9,7 +9,7 @@ values:
   version: v2.0.9
   package:
     enabled: true
-    use_upstream_repo: True
+    use_upstream_repo: true
     name: fluent-bit
 
   user: fluentbit
