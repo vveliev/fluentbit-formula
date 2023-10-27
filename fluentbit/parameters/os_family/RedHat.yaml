@@ -12,5 +12,13 @@
 # values: {}
 ---
 values:
-  pkg:
-    name: fluent-bit
+  package:
+    use_upstream_repo: true
+    repo:
+      baseurl: https://packages.fluentbit.io/centos/9/
+      repo_gpgcheck: 1
+      gpgkey: https://packages.fluentbit.io/fluentbit.key
+      sslverify: 1
+      sslcacert: /etc/pki/tls/certs/ca-bundle.crt
+      comments:
+        - instructions from https://grafana.com/docs/installation/rpm/

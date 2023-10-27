@@ -3,7 +3,7 @@
 
 fluentbit-service-file-directory-logs:
   file.directory:
-    - name: '/var/log/{{ fluentbit.service.name }}/{{ fluentbit.config.filename }}'
+    - name: '/var/log/{{ fluentbit.service.name }}/{{ fluentbit.service.name }}'
     - makedirs: True
     - user: {{ fluentbit.user }}
     - group: {{ fluentbit.group }}
@@ -26,15 +26,3 @@ fluentbit-service-file-manage-service:
     - template: jinja
     - context:
         fluentbit: {{ fluentbit }}
-
-{%- if fluentbit.service %}
-fluentbit-service:
-  service.running:
-    - name: {{ fluentbit.service.name }}
-    - enable: True
-    - user: {{ fluentbit.user }}
-    - group: {{ fluentbit.group }}
-    - watch:
-      - file: fluentbit-init-file
-      - file: fluentbit-config*
-{%- endif %}

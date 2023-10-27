@@ -21,7 +21,7 @@ values:
       - C@fluentbit
       - Y:G@id
   master: template-master
-  pkg:
+  package:
     name: cronie
   rootgroup: root
   service:
