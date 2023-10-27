@@ -1,0 +1,29 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+#
+# Set values specific to:
+#   salt['config.get']('os') == Ubuntu.
+#
+# You just need to add the key:values for this `os` that differ
+# from `defaults.yaml` + `<osarch>.yaml` + `<os_family>.yaml`.
+#
+# If you do not need to provide defaults via the `os` config,
+# you can remove this file or provide at least an empty dict, e.g.
+# values: {}
+{% set os_distrubition = grains['lsb_distrib_codename'] %}
+---
+values:
+{%- if 'oscodename' in grains %}
+  package:
+    use_upstream_repo: true
+    repo:
+      humanname: Fluentbit Official repo
+      name: deb https://packages.fluentbit.io/ubuntu/{{ os_distrubition }} {{ os_distrubition }} main
+      file: /etc/apt/sources.list.d/fluentbit.list
+      key_url: https://packages.fluentbit.io/fluentbit.key
+      comments: 
+        - installed by saltstack-formula/fluentbit-formula
+      gpgcheck: 1
+{%- else %}
+  {}
+{%- endif %}

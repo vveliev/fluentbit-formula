@@ -12,5 +12,5 @@
 # values: {}
 ---
 values:
-  pkg:
+  package:
     name: fluent-bit

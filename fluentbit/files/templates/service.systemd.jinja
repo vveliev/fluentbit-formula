@@ -1,11 +1,11 @@
 [Unit]
-Description={{ fluentbit.pkg.name }}
+Description={{ fluentbit.package.name }}
 Requires=network.target
 After=network.target
 
 [Service]
 Type=simple
-ExecStart={{ fluentbit.pkg.archive }}{{ fluentbit.pkg.name }} -c {{ fluentbit.config.path }}/{{ fluentbit.config.filename }}
+ExecStart={{ fluentbit.package.archive }}{{ fluentbit.package.name }} -c {{ fluentbit.config.file }}
 Restart=always
 
 [Install]

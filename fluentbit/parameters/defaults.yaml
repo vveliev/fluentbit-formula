@@ -7,23 +7,11 @@
 values:
   enabled: true
   version: v2.0.9
-  pkg:
+  package:
     enabled: true
+    use_upstream_repo: True
     name: fluent-bit
-    use_upstream_repo: false
-    use_upstream_archive: true
-    archive:
-      name: /usr/local
-      uri: https://packages.fluentbit.io/
-      source: null
-      source_hash: null
-      trim_output: true
-      archive_suffix: tar.gz
-      archive_format: tar
-      enforce_toplevel: true
-    repo:
-      uri: https://packages.fluentbit.io/
-      key: https://packages.fluentbit.io/fluentbit.key
+
   user: fluentbit
   group: fluentbit
   rootgroup: root
@@ -35,20 +23,24 @@ values:
   config:
     enabled: true
     name: fluentbit
-    path: "/etc/fluentbit"
-    filename: td-agent-bit.conf
+    file: /etc/fluentbit/fluent-bit.yaml
     config:
-      - service:
-          flush: 5
-          daemon: "Off"
-          log_level: info
-          plugins_file: plugins.conf
-          http_server: "Off"
-          http_listen: 0.0.0.0
-          http_port: 2020
-          log_file: false
-      - output:
-          test: test
+      service:
+        flush: 5
+        daemon: "Off"
+        log_level: info
+        http_server: "Off"
+        http_listen: 0.0.0.0
+        http_port: 2020
+        log_file: false
+      pipeline:
+        inputs:
+          - name: cpu
+            tag: my_cpu
+        outputs:
+          - name: stdout
+            match: "my*cpu"
+
   winner: pillar
   tofs:
     # The files_switch key serves as a selector for alternative
