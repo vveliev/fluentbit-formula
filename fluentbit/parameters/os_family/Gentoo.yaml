@@ -12,6 +12,5 @@
 # values: {}
 ---
 values:
-  pkg:
+  package:
     name: fluentbit-gentoo
-...

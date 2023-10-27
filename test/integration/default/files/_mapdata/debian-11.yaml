@@ -2,11 +2,8 @@
 # Debian-11
 ---
 values:
-  added_in_defaults: defaults_value
   added_in_lookup: lookup_value
   added_in_pillar: pillar_value
-  arch: amd64
-  config: /etc/template-formula.conf
   lookup:
     added_in_lookup: lookup_value
     master: template-master
@@ -21,11 +18,12 @@ values:
       - C@fluentbit
       - Y:G@id
   master: template-master
-  pkg:
-    name: bash
+  package:
+    arch: amd64
+    name: fluent-bit
   rootgroup: root
   service:
-    name: systemd-journald
+    name: fluentbit
   tofs:
     files_switch:
       - any/path/can/be/used/here

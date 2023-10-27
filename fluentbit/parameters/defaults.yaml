@@ -1,35 +1,71 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
 #
+# yamllint disable rule:comments-indentation
 # Set default values.
 ---
 values:
+  enabled: true
   version: v2.0.9
-  pkg:
-    name: fluentbit
-    use_upstream_repo: false
-    use_upstream_archive: true
-    archive:
-      name: /usr/local
-      uri: https://packages.fluentbit.io/
-      source: null
-      source_hash: null
-      trim_output: true
-      archive_suffix: tar.gz
-      archive_format: tar
-      enforce_toplevel: true
-    repo: {}
+  package:
+    enabled: true
+    use_upstream_repo: true
+    name: fluent-bit
+
   user: fluentbit
   group: fluentbit
   rootgroup: root
-  config: "/etc/fluentbit"
   service:
+    enabled: true
+    path: /etc/init/consul.conf
+    log_file: agent.log
+    name: "fluentbit"
+  config:
+    enabled: true
     name: fluentbit
-    flush: 5
-    daemon: "Off"
-    log_level: info
-    plugins_file: plugins.conf
-    http_server: "Off"
-    http_listen: 0.0.0.0
-    http_port: 2020
-    log_file: false
+    file: /etc/fluentbit/fluent-bit.yaml
+    config:
+      service:
+        flush: 5
+        daemon: "Off"
+        log_level: info
+        http_server: "Off"
+        http_listen: 0.0.0.0
+        http_port: 2020
+        log_file: false
+      pipeline:
+        inputs:
+          - name: cpu
+            tag: my_cpu
+        outputs:
+          - name: stdout
+            match: "my*cpu"
+
+  winner: pillar
+  tofs:
+    # The files_switch key serves as a selector for alternative
+    # directories under the formula files directory. See TOFS pattern
+    # doc for more info.
+    # Note: Any value not evaluated by `config.get` will be used literally.
+    # This can be used to set custom paths, as many levels deep as required.
+    files_switch:
+      - any/path/can/be/used/here
+      - id
+      - roles
+      - osfinger
+      - os
+      - os_family
+    # All aspects of path/file resolution are customisable using the options below.
+    # This is unnecessary in most cases; there are sensible defaults.
+    # Default path: salt://< path_prefix >/< dirs.files >/< dirs.default >
+    #         I.e.: salt://fluentbit/files/default
+    # path_prefix: template_alt
+    # dirs:
+    #   files: files_alt
+    #   default: default_alt
+    # The entries under `source_files` are prepended to the default source files
+    # given for the state
+    # source_files:
+    #   fluentbit-config-file-file-managed:
+    #     - 'example_alt.tmpl'
+    #     - 'example_alt.tmpl.jinja'

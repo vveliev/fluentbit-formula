@@ -12,8 +12,7 @@
 # values: {}
 ---
 values:
-  pkg:
+  package:
     name: fluentbit-arch
   service:
     name: service-arch
-...

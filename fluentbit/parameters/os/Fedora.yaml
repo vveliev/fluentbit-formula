@@ -12,8 +12,5 @@
 # values: {}
 ---
 values:
-  pkg:
-    name: fluentbit-fedora
-  service:
-    name: service-fedora
-...
+  package:
+    name: fluent-bit

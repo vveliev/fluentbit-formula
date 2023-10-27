@@ -11,11 +11,11 @@ include:
 
 fluentbit-package-clean-pkg-removed:
   pkg.removed:
-    - name: {{ fluentbit.pkg.name }}
+    - name: {{ fluentbit.package.name }}
     - require:
       - sls: {{ sls_config_clean }}
 
-# fluent-bit-package-repo-remove:
+# fluentbit-package-repo-remove:
 #   pkgrepo.managed:
 #     - humanname: Fluentbit Official
 #     - name: deb https://packages.fluentbit.io/debian/{{ bit.repo.version }} {{ bit.repo.version }} main

@@ -12,6 +12,5 @@
 # values: {}
 ---
 values:
-  pkg:
-    name: fluentbit-suse
-...
+  package:
+    name: fluent-bit
