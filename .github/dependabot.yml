@@ -8,13 +8,7 @@ updates:
     schedule:
       interval: "weekly"
 
-  # Maintain dependencies for npm
-  - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-
-  # Maintain dependencies for Composer
+  # Maintain dependencies for Bundler (Gemfile)
   - package-ecosystem: "bundler"
     directory: "/"
     schedule:
