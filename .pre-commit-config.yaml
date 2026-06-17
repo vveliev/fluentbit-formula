@@ -102,8 +102,14 @@ repos:
         additional_dependencies: [pygments==2.9.0]
 
   - repo: https://github.com/myint/rstcheck
-    rev: 3f929574
+    rev: v6.2.0
     hooks:
       - id: rstcheck
         name: Check reST files using rstcheck
-        exclude: 'docs/CHANGELOG.rst'
+        exclude: |
+          (?x)^(
+              docs/CHANGELOG.rst|
+              docs/TOFS_pattern.rst|
+              docs/map.jinja.rst|
+          )$
+        args: [--config, .ci/.rstcheck.cfg]
