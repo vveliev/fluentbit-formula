@@ -5,5 +5,5 @@ version: 1.0.0
 release: 1
 minimum_version: 2019.2
 summary: fluentbit formula
-description: Formula to use as a template for other formulas
+description: Formula to install and configure Fluent Bit log processor
 top_level_dir: fluentbit
