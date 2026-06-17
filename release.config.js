@@ -1,10 +1,10 @@
 module.exports = {
-  branch: 'master',
-  repositoryUrl: 'https://github.com/saltstack-formulas/fluentbit-formula',
+  branch: ['main'],
+  repositoryUrl: 'https://github.com/vveliev/fluentbit-formula',
   plugins: [
       ['@semantic-release/commit-analyzer', {
         preset: 'angular',
-        releaseRules: './release-rules.js',
+        releaseRules: './.ci/release-rules.js',
       }],
       '@semantic-release/release-notes-generator',
       ['@semantic-release/changelog', {
@@ -12,7 +12,7 @@ module.exports = {
         changelogTitle: '# Changelog',
       }],
       ['@semantic-release/exec', {
-        prepareCmd: 'sh ./pre-commit_semantic-release.sh ${nextRelease.version}',
+        prepareCmd: 'sh ./.ci/pre-commit_semantic-release.sh ${nextRelease.version}',
       }],
       ['@semantic-release/git', {
         assets: ['*.md', 'docs/*.rst', 'FORMULA'],
