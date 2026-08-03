@@ -1,3 +1,3 @@
 include:
   - .user
-  - .config
+  - .file

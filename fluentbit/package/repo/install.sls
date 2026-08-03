@@ -8,7 +8,7 @@
 
 {%- if fluentbit.package.use_upstream_repo %}
 
-grafana-package-repo-install-pkgrepo-managed:
+fluentbit-package-repo-install-pkgrepo-managed:
   pkgrepo.managed:
     {{- format_kwargs(fluentbit.package.repo) }}
 

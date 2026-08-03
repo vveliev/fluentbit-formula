@@ -1,0 +1,41 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+#
+# Set values specific to:
+#   salt['config.get']('os_family') == RedHat.
+#
+# You just need to add the key:values for this `os_family` that differ
+# from `defaults.yaml` + `<osarch>.yaml`.
+#
+# If you do not need to provide defaults via the `os_family` config,
+# you can remove this file or provide at least an empty dict, e.g.
+# values: {}
+#
+# Fluent Bit publishes upstream Yum repos under a distro-specific path;
+# each RedHat-family distro uses a different path segment:
+#   https://docs.fluentbit.io/manual/installation/downloads/linux/redhat-centos
+#   https://docs.fluentbit.io/manual/installation/downloads/linux/alma-rocky
+#   https://docs.fluentbit.io/manual/installation/downloads/linux/amazon-linux
+{%- if grains['os'] == 'AlmaLinux' %}
+{%-   set repo_baseurl = 'https://packages.fluentbit.io/almalinux/$releasever/' %}
+{%- elif grains['os'] == 'Rocky' %}
+{%-   set repo_baseurl = 'https://packages.fluentbit.io/rockylinux/$releasever/' %}
+{%- elif grains['os'] == 'Amazon' %}
+{%-   set repo_baseurl = 'https://packages.fluentbit.io/amazonlinux/' ~ grains['osmajorrelease'] ~ '/' %}
+{%- else %}
+{#-   CentOS, RHEL, CentOS Stream, Oracle Linux, Fedora, etc. #}
+{%-   set repo_baseurl = 'https://packages.fluentbit.io/centos/$releasever/$basearch/' %}
+{%- endif %}
+---
+values:
+  package:
+    use_upstream_repo: true
+    repo:
+      name: fluent-bit
+      baseurl: {{ repo_baseurl }}
+      repo_gpgcheck: 1
+      gpgkey: https://packages.fluentbit.io/fluentbit.key
+      sslverify: 1
+      sslcacert: /etc/pki/tls/certs/ca-bundle.crt
+      comments:
+        - installed by saltstack-formula/fluentbit-formula

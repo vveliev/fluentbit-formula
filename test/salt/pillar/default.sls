@@ -37,11 +37,6 @@ fluentbit:
     #     - 'example_alt.tmpl'
     #     - 'example_alt.tmpl.jinja'
 
-    # For testing purposes
-    source_files:
-      fluentbit-config-file-file-managed:
-        - 'example.tmpl.jinja'
-
   # Just for testing purposes
   winner: pillar
   added_in_pillar: pillar_value

@@ -2,10 +2,31 @@
 # Ubuntu-22.04
 ---
 values:
-  added_in_defaults: defaults_value
   added_in_lookup: lookup_value
   added_in_pillar: pillar_value
   arch: amd64
+  config:
+    config:
+      pipeline:
+        inputs:
+          - name: cpu
+            tag: my_cpu
+        outputs:
+          - match: my*cpu
+            name: stdout
+      service:
+        daemon: 'Off'
+        flush: 5
+        http_listen: 0.0.0.0
+        http_port: 2020
+        http_server: 'Off'
+        log_file: false
+        log_level: info
+    enabled: true
+    file: /etc/fluentbit/fluent-bit.yaml
+    name: fluentbit
+  enabled: true
+  group: fluentbit
   lookup:
     added_in_lookup: lookup_value
     master: template-master
@@ -20,11 +41,24 @@ values:
       - C@fluentbit
       - Y:G@id
   master: template-master
-  pkg:
-    name: bash
+  package:
+    enabled: true
+    name: fluent-bit
+    repo:
+      comments:
+        - installed by saltstack-formula/fluentbit-formula
+      file: /etc/apt/sources.list.d/fluentbit.list
+      gpgcheck: 1
+      humanname: Fluentbit Official repo
+      key_url: https://packages.fluentbit.io/fluentbit.key
+      name: deb https://packages.fluentbit.io/ubuntu/jammy jammy main
+    use_upstream_repo: true
   rootgroup: root
   service:
+    enabled: true
+    log_file: agent.log
     name: fluentbit
+    path: /etc/init/consul.conf
   tofs:
     files_switch:
       - any/path/can/be/used/here
@@ -33,7 +67,6 @@ values:
       - osfinger
       - os
       - os_family
-    source_files:
-      fluentbit-config-file-file-managed:
-        - example.tmpl.jinja
+  user: fluentbit
+  version: v2.0.9
   winner: pillar

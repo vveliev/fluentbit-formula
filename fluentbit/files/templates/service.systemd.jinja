@@ -5,7 +5,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart={{ fluentbit.package.archive }}{{ fluentbit.package.name }} -c {{ fluentbit.config.file }}
+ExecStart=/opt/fluent-bit/bin/{{ fluentbit.package.name }} -c {{ fluentbit.config.file }}
 Restart=always
 
 [Install]
