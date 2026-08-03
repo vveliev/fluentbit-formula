@@ -6,7 +6,7 @@
 {%- from tplroot ~ "/libs/map.jinja" import mapdata as fluentbit with context %}
 {%- from tplroot ~ "/libs/format_kwargs.jinja" import format_kwargs with context %}
 
-{%- if fluentbit.package.use_upstream_repo %}
+{%- if fluentbit.package.use_upstream_repo and fluentbit.package.repo %}
 
 fluentbit-package-repo-install-pkgrepo-managed:
   pkgrepo.managed:

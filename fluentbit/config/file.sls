@@ -4,7 +4,7 @@
 {#- Get the `tplroot` from `tpldir` #}
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- set sls_package_install = tplroot ~ '.package.install' %}
-{%- from tplroot ~ "/libs/map.jinja" import mapdata as fluentbit without context %}
+{%- from tplroot ~ "/libs/map.jinja" import mapdata as fluentbit with context %}
 {%- from tplroot ~ "/libs/libtofs.jinja" import files_switch with context %}
 
 {%- set fluentbit_file = fluentbit | traverse("config:file") %}

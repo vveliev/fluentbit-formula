@@ -10,15 +10,15 @@
 # If you do not need to provide defaults via the `os_family` config,
 # you can remove this file or provide at least an empty dict, e.g.
 # values: {}
-{% set os_distrubition = grains['lsb_distrib_codename'] %}
+{% set os_codename = grains.get('oscodename') %}
 ---
 values:
-{%- if 'oscodename' in grains %}
+{%- if os_codename %}
   package:
     use_upstream_repo: true
     repo:
       humanname: Fluentbit Official repo
-      name: deb https://packages.fluentbit.io/debian/{{ os_distrubition }} {{ os_distrubition }} main
+      name: deb https://packages.fluentbit.io/debian/{{ os_codename }} {{ os_codename }} main
       file: /etc/apt/sources.list.d/fluentbit.list
       key_url: https://packages.fluentbit.io/fluentbit.key
       comments:
