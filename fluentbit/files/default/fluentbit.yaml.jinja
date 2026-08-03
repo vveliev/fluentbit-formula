@@ -1,0 +1,10 @@
+########################################################################
+# File managed by Salt at <{{ source }}>.
+# Your changes will be overwritten.
+########################################################################
+
+service:
+{{ fluentbit.config.config.service | yaml(False) | indent(2, true) }}
+
+pipeline:
+{{ fluentbit.config.config.pipeline | yaml(False) | indent(2, true) }}

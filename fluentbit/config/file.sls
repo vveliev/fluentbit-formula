@@ -7,22 +7,24 @@
 {%- from tplroot ~ "/libs/map.jinja" import mapdata as fluentbit with context %}
 {%- from tplroot ~ "/libs/libtofs.jinja" import files_switch with context %}
 
+{%- set fluentbit_file = fluentbit | traverse("config:file") %}
+
 include:
   - {{ sls_package_install }}
 
 fluentbit-config-file-file-managed:
   file.managed:
-    - name: {{ fluentbit.config }}
-    - source: {{ files_switch(['example.tmpl'],
+    - name: {{ fluentbit_file }}
+    - source: {{ files_switch(['fluentbit.yaml.jinja'],
                               lookup='fluentbit-config-file-file-managed'
                  )
               }}
-    - mode: "0644"
-    - user: root
-    - group: {{ fluentbit.rootgroup }}
+    - mode: 644
+    - user: {{ fluentbit.user }}
+    - group: {{ fluentbit.group }}
     - makedirs: True
     - template: jinja
     - require:
       - sls: {{ sls_package_install }}
     - context:
-        fluentbit: {{ fluentbit | json }}
+        fluentbit: {{ fluentbit | yaml }}

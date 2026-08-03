@@ -7,16 +7,8 @@ fluentbit:
     # Just for testing purposes
     winner: lookup
     added_in_lookup: lookup_value
-
-  # Using bash package and udev service as an example. This allows us to
-  # test the template formula itself. You should set these parameters to
-  # examples that make sense in the contexto of the formula you're writing.
-  pkg:
-    name: bash
   service:
-    name: systemd-journald
-  config: /etc/template-formula.conf
-
+    name: fluentbit
   tofs:
     # The files_switch key serves as a selector for alternative
     # directories under the formula files directory. See TOFS pattern
@@ -44,11 +36,6 @@ fluentbit:
     #   fluentbit-config-file-file-managed:
     #     - 'example_alt.tmpl'
     #     - 'example_alt.tmpl.jinja'
-
-    # For testing purposes
-    source_files:
-      fluentbit-config-file-file-managed:
-        - 'example.tmpl.jinja'
 
   # Just for testing purposes
   winner: pillar

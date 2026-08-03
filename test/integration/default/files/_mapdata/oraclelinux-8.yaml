@@ -2,11 +2,31 @@
 # Oracle Linux Server-8
 ---
 values:
-  added_in_defaults: defaults_value
   added_in_lookup: lookup_value
   added_in_pillar: pillar_value
   arch: amd64
-  config: /etc/template-formula.conf
+  config:
+    config:
+      pipeline:
+        inputs:
+          - name: cpu
+            tag: my_cpu
+        outputs:
+          - match: my*cpu
+            name: stdout
+      service:
+        daemon: 'Off'
+        flush: 5
+        http_listen: 0.0.0.0
+        http_port: 2020
+        http_server: 'Off'
+        log_file: false
+        log_level: info
+    enabled: true
+    file: /etc/fluentbit/fluent-bit.yaml
+    name: fluentbit
+  enabled: true
+  group: fluentbit
   lookup:
     added_in_lookup: lookup_value
     master: template-master
@@ -21,11 +41,24 @@ values:
       - C@fluentbit
       - Y:G@id
   master: template-master
-  pkg:
-    name: bash
+  package:
+    enabled: true
+    name: fluent-bit
+    repo:
+      baseurl: https://packages.fluentbit.io/centos/$releasever/$basearch/
+      comments:
+        - installed by saltstack-formula/fluentbit-formula
+      gpgkey: https://packages.fluentbit.io/fluentbit.key
+      name: fluent-bit
+      repo_gpgcheck: 1
+      sslcacert: /etc/pki/tls/certs/ca-bundle.crt
+      sslverify: 1
+    use_upstream_repo: true
   rootgroup: root
   service:
-    name: systemd-journald
+    enabled: true
+    log_file: agent.log
+    name: fluentbit
   tofs:
     files_switch:
       - any/path/can/be/used/here
@@ -34,7 +67,6 @@ values:
       - osfinger
       - os
       - os_family
-    source_files:
-      fluentbit-config-file-file-managed:
-        - example.tmpl.jinja
+  user: fluentbit
+  version: v2.0.9
   winner: pillar

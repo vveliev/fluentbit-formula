@@ -1,55 +1,60 @@
 # yamllint disable rule:indentation rule:line-length
 ---
 fluentbit:
-  repo:
-    version: buster
-  user: td-agent-bit
-  group: td-agent-bit
-  process_name: td-agent-bit
-  pkg: td-agent-bit
-  agent:
-    flush: 5
-    daemon: 'Off'
-    log_level: info
-    http_server: 'on'
-    http_port: 2020
-    log_file: false
-    log_file_path: /var/log/td-agent-bit/td-agent-bit.log
-  service: true
-  configs:
-    inputs:
-      settings:
-        - type: input
-          Name: syslog
-          Parser: syslog-rfc5424
-          Mode: tcp
-          Port: 5140
-          Listen: 127.0.0.1
-          # Buffer_Chunk_Size:   32000
-          # Buffer_Max_Size:   64000
-          # syslog input plugin req uires parser configuration
-        - type: input
-          Name: systemd
-          Tag: host.*
-          # Systemd_Filter  _SYSTEMD_UNIT=docker.service
-          # # Can be defined multiple times
-    outputs:
-      settings:
-        - type: output
-          Name: forward
-          Match: '*'
-          Host: fluentd.host
-          Port: 24224
-        - type: output
-          Name: stdout
-          Match: '**'
-  parsers:
-    org_parser:
-      settings:
-        # http://rubular.com/r/tjUt3Awgg4
-        - type: parser
-          Name: cri
-          Format: regex
-          Regex: '^(?<time>[^ ]+) (?<stream>stdout|stderr) (?<logtag>[^ ]*) (?<message>.*)$'
-          Time_Key: time
-          Time_Format: '%Y-%m-%dT%H:%M:%S.%L%z'
+  # Pin a specific Fluent Bit version. Informational only today (the
+  # upstream repos below always install the distro repo's current
+  # release); kept here for future use.
+  version: v2.0.9
+
+  package:
+    use_upstream_repo: true
+    name: fluent-bit
+
+  user: fluentbit
+  group: fluentbit
+
+  service:
+    name: fluentbit
+    log_file: agent.log
+
+  config:
+    # Rendered to /etc/fluentbit/fluent-bit.yaml by default.
+    file: /etc/fluentbit/fluent-bit.yaml
+    config:
+      service:
+        flush: 5
+        daemon: 'Off'
+        log_level: info
+        http_server: 'On'
+        http_listen: 0.0.0.0
+        http_port: 2020
+        log_file: false
+      pipeline:
+        inputs:
+          - name: tail
+            tag: app.*
+            path: /var/log/app/*.log
+          - name: systemd
+            tag: host.*
+        outputs:
+          - name: forward
+            match: '*'
+            host: fluentd.example.com
+            port: 24224
+          - name: stdout
+            match: '*'
+
+  # The files_switch key serves as a selector for alternative
+  # directories under the formula files directory. See the TOFS
+  # pattern doc for more info.
+  # Note: Any value not evaluated by `config.get` will be used
+  # literally. This can be used to set custom paths, as many levels
+  # deep as required.
+  # tofs:
+  #   files_switch:
+  #     - any/path/can/be/used/here
+  #     - id
+  #     - roles
+  #     - osfinger
+  #     - os
+  #     - os_family

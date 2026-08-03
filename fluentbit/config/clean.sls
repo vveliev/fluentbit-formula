@@ -11,6 +11,6 @@ include:
 
 fluentbit-config-clean-file-absent:
   file.absent:
-    - name: {{ fluentbit.config }}
+    - name: {{ fluentbit.config.file }}
     - require:
       - sls: {{ sls_service_clean }}
