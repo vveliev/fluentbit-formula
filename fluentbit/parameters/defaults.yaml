@@ -17,7 +17,6 @@ values:
   rootgroup: root
   service:
     enabled: true
-    path: /etc/init/consul.conf
     log_file: agent.log
     name: "fluentbit"
   config:

@@ -59,7 +59,6 @@ values:
     enabled: true
     log_file: agent.log
     name: fluentbit
-    path: /etc/init/consul.conf
   tofs:
     files_switch:
       - any/path/can/be/used/here
